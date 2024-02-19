@@ -14,5 +14,5 @@ Soy estudiante avanzado de la carrera de [ATI](https://www.tec.ac.cr/programas-a
 
 
 - [Habilidades](https://giankjimenz.github.io/pages/habilidades.html) 
-- [Formacion Educacional](https://kbroman.org/Educacion.html)
+- [Formacion Educacional](https://giankjimenz.github.io/pages/Educacion.html)
 
