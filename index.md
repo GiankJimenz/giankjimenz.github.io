@@ -13,10 +13,6 @@ Soy estudiante avanzado de la carrera de [ATI](https://www.tec.ac.cr/programas-a
 ---
 
 
- [Habilidades](https://giankjimenz.github.io/pages/habilidades.html) 
-[git/github](https://kbroman.org/github_tutorial),
-[GNU make](https://kbroman.org/minimal_make),
-[knitr](https://kbroman.org/knitr_knutshell),
-[R packages](https://kbroman.org/pkg_primer),
-[data organization](https://kbroman.org/dataorg),
-and [reproducible research](https://kbroman.org/steps2rr).
+- [Habilidades](https://giankjimenz.github.io/pages/habilidades.html) 
+- [Formacion Educacional](https://kbroman.org/Educacion.html)
+
