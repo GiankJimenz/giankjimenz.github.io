@@ -12,7 +12,7 @@
 }
 header {
     background-color: mistyrose;
-    color: #fff;
+    color: #333;
     padding: 20px;
     text-align: center;
 }
@@ -98,6 +98,26 @@ li a:hover {
   color: white;
   
 }
+div.gallery {
+  margin: 5px;
+  border: 1px solid #ccc;
+  float: left;
+  width: 180px;
+}
+
+div.gallery:hover {
+  border: 1px solid #777;
+}
+
+div.gallery img {
+  width: 100%;
+  height: auto;
+}
+
+div.desc {
+  padding: 15px;
+  text-align: center;
+}
 
 
       </style>
@@ -145,7 +165,7 @@ li a:hover {
         </tbody>
   </table>
   <table id="librosEra2">
-    <caption>Libros de la segunda saga</caption>
+    <h3>Libros de la segunda saga</h3>
       <thead>
           <tr>
               <th>Título</th>
@@ -168,13 +188,45 @@ li a:hover {
       </tbody>
 
   </table>
-<img src="imperio final.jpeg" alt="foto de la portado del libro El imperio final" />
-<img src="pozo.jpg" alt="foto de la portado del libro El pozo de ascensión" />
-<img src="eras.jpeg" alt="foto de la portado del libro El héroe de las eras" />
-<img src="aleacionley.jpeg" alt="foto de la portado del libro Aleacion de ley" />
-<img src="sombras.jpeg" alt="foto de la portado del libro Sombras de la identidad" />
-<img src="metal perdido.jpeg" alt="foto de la portado del libro El metal perdido" />
-
+  <div class="gallery">
+    <a target="_blank" href="imperio final.jpg">
+      <img src="imperio final.jpeg" alt="Portada imperio final" width="600" height="400">
+    </a>
+    <div class="desc">Portada de Imperio Final</div>
+  </div>
+  
+  <div class="gallery">
+    <a target="_blank" href="pozo.jpg">
+      <img src="pozo.jpg" alt="Portada pozo de ascensión" width="600" height="400">
+    </a>
+    <div class="desc">Portada de El pozo de ascensión</div>
+  </div>
+  
+  <div class="gallery">
+    <a target="_blank" href="eras.jpeg">
+      <img src="eras.jpeg" alt="Portada el hereo de eras" width="600" height="400">
+    </a>
+    <div class="desc">Portada de El héroe de las eras</div>
+  </div>
+  
+  <div class="gallery">
+    <a target="_blank" href="aleacionley.jpeg">
+      <img src="aleacionley.jpeg" alt="foto de la portada del libro Aleacion de ley" width="600" height="400">
+    </a>
+    <div class="desc">Portada de Aleacion de ley </div>
+  </div>
+  <div class="gallery">
+    <a target="_blank" href="sombras.jpeg">
+      <img src="sombras.jpeg" alt="foto de la portada del libro Sombras de la identidad" width="600" height="400">
+    </a>
+    <div class="desc">Portada de Sombras de la identidad</div>
+  </div>
+  <div class="gallery">
+    <a target="_blank" href="metal perdido.jpeg">
+      <img src="metal perdido.jpeg" alt="foto de la portada del libro El metal perdido" width="600" height="400">
+    </a>
+    <div class="desc">Portada de El Metal perdido</div>
+  </div>
 
 <footer>
   <p>Todos los derechos de autor de las imágenes e información pertenecen a Brandon Sanderson.</p>
