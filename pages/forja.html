@@ -83,10 +83,10 @@
                     description: "Dentro del horno, el metal se ha transformado en un líquido resplandeciente, su superficie ondulante refleja la luz del fuego en una danza hipnótica de tonos dorados y plateados. El metal derretido emite un resplandor intenso que llena el espacio con una sensación de poder y energía."
                 },
                 mesasTrabajo: {
-                    description: "La superficie de la mesa está cubierta con una fina capa de aceite mineral, que ayuda a prevenir la oxidación del metal y facilita el trabajo de los herreros. El aceite se ha impregnado en la madera, creando un brillo suave y un aroma característico que impregna el aire de la forja.Uno de los moldes parece ser de una llave"
+                    description: "La superficie de la mesa está cubierta con una fina capa de aceite mineral, que ayuda a prevenir la oxidación del metal y facilita el trabajo de los herreros. El aceite se ha impregnado en la madera, creando un brillo suave y un aroma característico que impregna el aire de la forja. Hay cientos de cortes por encima de la mesa, algunos parece formar palabras. Uno de los moldes te llama la atencion"
                 },
                 espejo:{
-                    description:"Dentro del horno, el metal se ha transformado en un líquido resplandeciente, su superficie ondulante refleja la luz del fuego en una danza hipnótica de tonos dorados y plateados. El metal derretido emite un resplandor intenso que llena el espacio con una sensación de poder y energía."
+                    description:"Un espejo sucio con polvo refleja una imagen borrosa y distorsionada. La superficie del espejo está cubierta con una capa de polvo que difumina los reflejos nítidos y hace que la imagen reflejada parezca opaca y descolorida. Pequeñas partículas de polvo se acumulan en la superficie del espejo, creando manchas irregulares que interrumpen la claridad del reflejo.Ademas en los bordes parece que alguien ha escrito algo"
                 }
             },
             items: {
@@ -98,12 +98,13 @@
                 }
             },
             currentRoom: "forja",
+            objeto:"",
             inventory: [],
             sleeping:true,
             hasReadScrolls:false,
             hasMolde:false,
             hasLlave:false,
-            isCerrado:false,
+            isCerrado:true,
             output(text) {
                 const outputElement = document.getElementById("output");
                 outputElement.innerHTML = text;
@@ -184,6 +185,7 @@
                         this.output("Que llave?");}
                     else{
                         this.output("Te mueves hacia la puerta de hierro, pones la llave en la cerradura y la mueves hasta escuchar un click fuerte")
+                        this.isCerrado=false;
                     }
                 }
         
@@ -191,7 +193,7 @@
                     if(!this.isCerrado){
                         this.output("empujas la puerta, vuelves a mirrar la forja una vez mas pero dicides continuar con tu exploracion, y sales");}
                     else{
-                        this.output("empujas la puerta, peor algo dentro de esta mismo evita que continues, al estudiarla por unos momentos mas aprendes que la culpable de esta situacion en la cerradura, deberias apuñalarle preferiblemente con una llave")
+                        this.output("empujas la puerta, pero algo dentro de esta mismo evita que continues, al estudiarla por unos momentos mas aprendes que la culpable de esta situacion en la cerradura, deberias apuñalarle <p>preferiblemente con una llave</p>")
                     }
                 }
                 else if (command === "usar espejo") {
@@ -214,11 +216,19 @@
                         this.output("ya tienes la llave contigo")
                     }
                 }
-        
+                else if (command === "tomar molde") {
+                    if(!this.hasMolde){
+                        this.output("tomas el molde de la mesa");
+                        this.hasMolde=true;}
+                    else{
+                        this.output("ya tienes el molde")
+    
+                    }
+                }
                 else if (command === "tomar puerta") {
                 
                         this.output("jajajaja.....espera es enserio? no, no puedes tomar la puerta");}
-                }
+                
                 else if (command === "tomar pergaminos") {
                     if(!hasReadScrolls){
                         this.output("tomas los pergaminos de la mesa, el papel esta sucio");
@@ -229,26 +239,62 @@
                 }
                 /*investigar cuarto o objetos*/
                 else if (command === "investigar forja") {
-                    if (!this.sleeping){
+                  
                         this.currentRoom="forja"
                         this.output(this.rooms[this.currentRoom].description);
-                        this.currentRoom="start"
-                    }
+                        
+                    
                 }
-                else if (command === "investigar forja") {
-                    if (!this.sleeping){
+                else if (command === "investigar llave") {
+                        this.objeto="llave"
+                        this.output(this.items[this.objeto].description);
                         this.currentRoom="forja"
-                        this.output(this.rooms[this.currentRoom].description);
-                        this.currentRoom="start"
-                    }
+                        
                 }
-                else if (command === "investigar forja") {
-                    if (!this.sleeping){
+                else if (command === "investigar paredes") {
+                 
+                        this.currentRoom="paredes"
+                        this.output(this.rooms[this.currentRoom].description);
                         this.currentRoom="forja"
-                        this.output(this.rooms[this.currentRoom].description);
-                        this.currentRoom="start"
-                    }
+                    
                 }
+                else if (command === "investigar paredes") {
+                 
+                 this.currentRoom="puertas"
+                 this.output(this.rooms[this.currentRoom].description);
+                 this.currentRoom="forja"
+             
+                }
+                else if (command === "investigar horno") {
+                 
+                 this.currentRoom="horno"
+                 this.output(this.rooms[this.currentRoom].description);
+                 this.currentRoom="forja"
+             
+                }
+                else if (command === "investigar mesa") {
+                 
+                 this.currentRoom="mesasTrabajo"
+                 this.output(this.rooms[this.currentRoom].description);
+                 this.currentRoom="forja"
+             
+                }
+                else if (command === "investigar luces") {
+                 
+                 this.currentRoom="espejo"
+                 this.output(this.rooms[this.currentRoom].description);
+                 this.currentRoom="forja"
+             
+                }
+                else if (command === "investigar molde") {
+                 
+                 this.objeto="molde"
+                 this.output(this.rooms[this.items].description);
+                 this.currentRoom="forja"
+             
+                }
+            }
+
             else {
             this.output("Comando no reconocido. Error TA705. Prueba otro comando.");
         }
