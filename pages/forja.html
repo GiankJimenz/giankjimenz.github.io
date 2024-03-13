@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Text Adventure Game</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+        }
+
+        #game-container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: lightslategray;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        #output {
+            margin-bottom: 10px;
+            padding: 10px;
+            background-color: #eee;
+            border-radius: 5px;
+        }
+        .pergamino {
+            background-color: #f5e6cc;
+            padding: 20px;
+            border-radius: 10px;
+            position: relative;
+            font-style: italic;
+        }
+
+        .pergamino:before {
+            content: '';
+            position: absolute;
+            top: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0;
+            height: 0;
+            border-left: 10px solid transparent;
+            border-right: 10px solid transparent;
+            border-bottom: 10px solid #f5e6cc;
+        }
+
+        #input {
+            width: calc(100% - 20px);
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body>
+    <header class="container-fluid">
+        <div class="row">
+          <div class="col">
+            <h1 class="text-center">Hogar del Herrero</h1>
+        </div>
+    </header>
+    <div id="game-container">
+        <div id="output"></div>
+        <input type="text" id="input" autofocus>
+    </div>
+    <script>
+        const game = {
+            start: "Nada denuevo. Cuantos dias has estado dormido? Talves deberias contar los segundos, uno por uno, para evitar la locura de las espera, tambien podrias tartar de volver a dormir(estas creciendo ocupas el descanso) o puedes seleccionar la opcion mas dificil y despertar",
+            rooms: {
+                forja: {
+                    description: "Te encuentras frente a una imponente estructura de piedra, la forja se yergue como un bastión de trabajo en medio del paisaje. Sus muros sólidos y robustos están construidos con ladrillos oscuros y gastados por el calor y el tiempo, evidencia del trabajo incansable que se lleva a cabo dentro de sus confines.A la par tuya hay mesas de trabajo  llenos de herramientas y equipos metalúrgicos: martillos de diferentes tamaños, tenazas, moldes y recipientes con agua para templar el metal. En un rincón, se encuentra un gran horno de fundición, donde el metal se calienta hasta alcanzar su punto de fusión, listo para ser moldeado en nuevas creaciones.Justo al frente tuyo todavia puedes observar dos puntos azules observandote a la par de estos hay una puerta de hierro forjado",
+                },
+                paredes: {
+                    description: "A lo largo de estas paredes, se pueden observar marcas de humo y hollín, testigos del intenso calor y la actividad constante que caracterizan a la forja. El carbón y el metal caliente han dejado su huella en la superficie de los ladrillos, creando manchas oscuras y áreas descoloridas que contrastan con el color natural del material.",
+                },
+                puertas: {
+                    description: "Cada puerta está adornada con intrincados diseños y patrones elaborados, creados con maestría por hábiles artesanos. Las filigranas de hierro serpentean a lo largo de la superficie de las puertas, formando figuras abstractas que evocan la fuerza y la energía del fuego.",
+                },
+                horno: {
+                    description: "Dentro del horno, el metal se ha transformado en un líquido resplandeciente, su superficie ondulante refleja la luz del fuego en una danza hipnótica de tonos dorados y plateados. El metal derretido emite un resplandor intenso que llena el espacio con una sensación de poder y energía."
+                },
+                mesasTrabajo: {
+                    description: "La superficie de la mesa está cubierta con una fina capa de aceite mineral, que ayuda a prevenir la oxidación del metal y facilita el trabajo de los herreros. El aceite se ha impregnado en la madera, creando un brillo suave y un aroma característico que impregna el aire de la forja.Uno de los moldes parece ser de una llave"
+                },
+                espejo:{
+                    description:"Dentro del horno, el metal se ha transformado en un líquido resplandeciente, su superficie ondulante refleja la luz del fuego en una danza hipnótica de tonos dorados y plateados. El metal derretido emite un resplandor intenso que llena el espacio con una sensación de poder y energía."
+                }
+            },
+            items: {
+                molde: {
+                    description: "Una linterna vieja y oxidada."
+                },
+                llave: {
+                    description: "Una llave fea hecha de un metal hermoso, cualquier herrero que viese esto estaria asqueado por esta imagen, pero no deberias medir tu trabajo por las opiniones de otras personas, hiciste lo mejor que pudiste"
+                }
+            },
+            currentRoom: "forja",
+            inventory: [],
+            sleeping:true,
+            hasReadScrolls:false,
+            hasMolde:false,
+            hasLlave:false,
+            isCerrado:false,
+            output(text) {
+                const outputElement = document.getElementById("output");
+                outputElement.innerHTML = text;
+            },
+            input(event) {
+                if (event.keyCode === 13) {
+                    const inputElement = document.getElementById("input");
+                    const command = inputElement.value.toLowerCase();
+                    inputElement.value = "";
+                    this.processCommand(command);
+                }
+            },
+           processCommand(command) {
+           if (this.currentRoom === "forja") {
+            if (this.sleeping){
+                if (command === "dormir") {
+                    this.output("Tratas de volver a dormir, abraza la oscuridad y utiliza la energía para crecer y ser un hombre alto y fuerte. Tu mente está con un solo comando *DORMIR*, después de un par, lo que sientes como horas, empiezas a odiarte, ¿cómo es que no puedes dormirte? ¡Has estado pensando solo en dormir! Piensas más y más fuerte en dormir hasta que ya sientes tu mente apagarse. AL FIN! OH HYPNOS LLEVA A ESTE FIEL CIERVO AL DULCE REINO DE-......a quien engañas, no puedes dormir");
+                }
+                else if (command === "despertar") {
+                    this.output("Abres los ojos y tratas de respirar, no puedes, oh dioses, NO PUEDES RESPIRAR, un momento de miedo arrastras tus dedos sobre tu boca....y no sientas nada, mueves tu dedos arriba y descubres que tu naris tambien hace falta, miras tus manos, todo normal, tres dedos que pueden moverse normalmente.Miras a tu alrededor y puedes observar que estas en una forja, hay una mesa cerca de ti con un monton de pergarminos, ademas hay un par de luces al norte donde estas en el momento");
+                    this.sleeping = false; 
+                }
+                else{
+                    this.output("Primero debes despertar");
+                } 
+            }
+            else if(!this.sleeping){
+                if (command === "dormir") {
+                    this.output("No, Hypnos ha sido informado de tu engaño, nunca dormirás de nuevo, debiste haber aprovechado esos momentos de paz, ahora solo viene el dolor eterno...EL DOLOR DESPERTARSE CON SUEÑO!");
+                } 
+                else if (command === "despertar") {
+                    this.output("Ya estas despierto");
+                }
+                /*Comandos de leer */
+                else if (command === "leer pergaminos") {
+                    this.output('Tratas de leer los pergaminos. Son muy antiguos y apenas puedes entender algunas palabras sueltas <div class="pergamino"> Prototipo: Talos<p>versión: 0.1</p> comandos establecidos: <p>-Leer objeto</p> <p>-Investigar cuarto</p> <p>-Usar Objeto</p> <p>-Tomar Objeto</p>Nota de Hefesto: Si Olimpo no demanda mas de mi tiempo le podre añadir mas comandos </div> Esta última nota te hace creer que Olimpo lo robara todo el tiempo, pobre hombre.');
+                    this.hasReadScrolls = true;
+                }
+            
+                else if (command === "leer horno") {
+                   
+                        this.output("Un lado dice <H2>NO BEBER EL METAL TE LO DIGO A TI DIONISIO</H2> ....¿que rayos hizo Dionisio?");
+                    
+                 }
+                else if (command === "leer llave") {
+                    
+                    this.output("¿como vas a leer una llave? ....oh no espera si dice algo en el metal <p>Κατασκευάζεται στην Αίτνα</p>Hecho en monte Etna");
+               
+                }
+                else if (command === "leer puerta") {
+                
+                    this.output("¿como vas a leer una puerta?");
+                }
+                else if (command === "leer molde") {
+                    
+                    this.output("un su parte de inferior dice llave puerta forja");
+                }
+            
+                else if (command === "leer espejo") {
+                
+                    this.output("Parece que hay algo escrito en el marco <p>No te asustes, el monstruo en el espejo eres tu</p>....parece a la letra de Hefesto");
+                 }
+                else if (command === "leer mesa") {
+                
+                    this.output("Hay un dibujo raspado con un cuchillo en la madera de la mesa, parece un corazon con Afrodita+Hefesto escrito dentro de el");
+                }
+                /*comandos de usar*/
+                else if (command === "usar horno") {
+                    if(!this.hasMolde){
+                        this.output("Mueves el horno para que fluya el metal fundido fuera de su compuerta, el metal se riega en el suelo, el color del metal cuando se enfria es el mismo al de tu piel");}
+                    else{
+                        this.output("Mueves el horno para que fluja el metal fundido fuera de su compuerta, pones el molde en posicion para que sea llenado por el brillante liquido. <p> ya lleno y despues de unos minutos sacas una nueva llave del molde</p>")
+                        this.hasLlave=true;
+                    }
+                }
+                else if (command === "usar llave") {
+                    if(!this.hasLlave){
+                        this.output("Que llave?");}
+                    else{
+                        this.output("Te mueves hacia la puerta de hierro, pones la llave en la cerradura y la mueves hasta escuchar un click fuerte")
+                    }
+                }
+        
+                else if (command === "usar puerta") {
+                    if(!this.isCerrado){
+                        this.output("empujas la puerta, vuelves a mirrar la forja una vez mas pero dicides continuar con tu exploracion, y sales");}
+                    else{
+                        this.output("empujas la puerta, peor algo dentro de esta mismo evita que continues, al estudiarla por unos momentos mas aprendes que la culpable de esta situacion en la cerradura, deberias apuñalarle preferiblemente con una llave")
+                    }
+                }
+                else if (command === "usar espejo") {
+                    this.output("Limpias la suciedad para alfin averiguar que son esas luces azules que te ven y descubres.....<p>tu reflejo</p>");
+                }
+                else if (this.sleeping){
+                    this.output("Primero debes despertar");
+                }
+                else if (command === "usar pergaminos") {
+                    this.output('juegas unos momentos con los pergaminos, tratas de formar una mariposa con ellos, extrañamente en tu memoria tienes las<a href="https://www.instructables.com/How-to-Make-an-Origami-Butterfly-1/">instrucciones</a> para completar esta tarea');
+                }
+                /*comandos de tomar */
+                else if (command === "tomar horno") {                   
+                    this.output("abrazas el horno caliente, tus brazos comienza a tornarse un rojo vivo, pero no sientes dolor. Tratas de levantar el horno pero esta bien puesto");
+                }
+                else if (command === "tomar llave") {
+                    if(!this.hasLlave){
+                        this.output("Que llave?");}
+                    else{
+                        this.output("ya tienes la llave contigo")
+                    }
+                }
+        
+                else if (command === "tomar puerta") {
+                
+                        this.output("jajajaja.....espera es enserio? no, no puedes tomar la puerta");}
+                }
+                else if (command === "tomar pergaminos") {
+                    if(!hasReadScrolls){
+                        this.output("tomas los pergaminos de la mesa, el papel esta sucio");
+                    }
+                    else{
+                        this.output("ya tienes los pergaminos");
+                    }       
+                }
+                /*investigar cuarto o objetos*/
+                else if (command === "investigar forja") {
+                    if (!this.sleeping){
+                        this.currentRoom="forja"
+                        this.output(this.rooms[this.currentRoom].description);
+                        this.currentRoom="start"
+                    }
+                }
+                else if (command === "investigar forja") {
+                    if (!this.sleeping){
+                        this.currentRoom="forja"
+                        this.output(this.rooms[this.currentRoom].description);
+                        this.currentRoom="start"
+                    }
+                }
+                else if (command === "investigar forja") {
+                    if (!this.sleeping){
+                        this.currentRoom="forja"
+                        this.output(this.rooms[this.currentRoom].description);
+                        this.currentRoom="start"
+                    }
+                }
+            else {
+            this.output("Comando no reconocido. Error TA705. Prueba otro comando.");
+        }
+            
+        } 
+        else if (directions.includes(command) && currentRoom.hasOwnProperty(command)) {
+            this.currentRoom = currentRoom[command];
+            this.output(this.rooms[this.currentRoom].description);
+        } else {
+            this.output("Comando no reconocido. Error TA705. Prueba otro comando.");
+        }
+        },
+            init() {
+                document.getElementById("input").addEventListener("keyup", this.input.bind(this));
+                this.output(this.start);
+            }
+        };
+
+        game.init();
+    </script>
+</body>
+</html>
