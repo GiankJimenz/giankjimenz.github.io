@@ -1,0 +1,103 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #9b2323;
+}
+.background-image {
+    background-image: url("https://discoelysium.com/_next/image?url=https:%2F%2Fres.cloudinary.com%2Fdisco-elysium%2Fimages%2Ff_auto%2Cq_auto%2Fv1607523468%2FMedia-Page%2FMedia-Page.png&w=640&q=100");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+    min-height: 100vh;
+}
+
+.container-fluid {
+    width: 100%;
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.row {
+    display: flex;
+    flex-wrap: wrap;
+    margin-right: -15px;
+    margin-left: -15px;
+}
+
+.col {
+    flex-basis: 0;
+    flex-grow: 1;
+    max-width: 100%;
+}
+
+.text-center {
+    text-align: center;
+}
+
+h1 {
+    font-size: 2.5rem; /* Puedes ajustar este tamaño según tus necesidades */
+    font-weight: bold; /* Opcional: para negrita */
+    margin-top: 20px; /* Opcional: ajusta el margen superior según necesites */
+    margin-bottom: 20px; /* Opcional: ajusta el margen inferior según necesites */
+    color: crimson; /* Cambia el color del texto */
+    background-color: #ffc107; 
+   
+}
+
+#game-container {
+   flex: auto;
+    padding: 20px;
+    background-color: black;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(19, 14, 14, 0.1);
+}
+
+#output {
+    margin-bottom: 10px;
+    padding: 10px;
+    background-color: gray;
+    border-radius: 5px;
+}
+
+.pergamino {
+    background-color: #f5e6cc;
+    padding: 20px;
+    border-radius: 10px;
+    position: relative;
+    font-style: italic;
+}
+
+.pergamino:before {
+    content: '';
+    position: absolute;
+    top: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0;
+    height: 0;
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+    border-bottom: 10px solid #f5e6cc;
+}
+
+#input {
+    width: calc(100% - 10px);
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid white;
+    font-size: 16px;
+}
+
+.profile-section {
+    background-color: #0a233d;
+    padding: 20px;
+    border-radius: 5px;
+}
+
+.character-info {
+    background-color: #f8f9fa;
+    padding: 20px;
+    border-radius: 5px;
+    margin-top: 20px;
+}
