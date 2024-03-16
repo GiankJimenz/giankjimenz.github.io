@@ -1,0 +1,59 @@
+!DOCTYPE html>
+<html lang="es">
+    <script>
+        class Jugador{
+            constructor(nombre,nivel,puntuacion){
+                this.nombre=nombre;
+                this.nivel=nivel;
+                this.puntuacion=puntuacion;
+            }
+            /*asumo que es uno en uno*/
+            aumentarPuntuacion(){
+                this.puntuacion++;
+            }
+            ascenderNivel(){
+                this.nivel++;
+            }
+            mostrarInfo(){
+                console.log('Nombre:${this.nombre}')
+                console.log('Puntuación: ${this.puntuacion}');
+                console.log('Nivel: ${this.nivel}');
+            }
+        }
+        class Personaje{
+            constructor(nombre,vida,ataque){
+                this.nombre=nombre;
+                this.vida=vida;
+                this.ataque=ataque;
+            }
+           
+            atacar(personajeEnemigo){
+                personajeEnemigo.vida -= this.ataque;
+            }
+            ascenderNivel(){
+                this.nivel++;
+            }
+            mostrarInfo(){
+                console.log('Nombre:${this.nombre}')
+                console.log('Puntuación: ${this.puntuacion}');
+                console.log('Nivel: ${this.nivel}');
+            }
+        }
+        class Guerrero extends Personaje{
+            constructor(nombre, vida, ataque, armadura, fuerza) {
+                super(nombre, vida, ataque);
+                this.armadura = armadura;
+                this.fuerza = fuerza;
+            }
+            defender(daño) {
+                const dañoFinall = daño - this.armadura;
+                if (danioReduccion > 0) {
+                    this.vida -= danioReduccion;
+                    console.log('${this.nombre} impone su escudo, pero no es suficientemente rapido, recibe ${danioReduccion} puntos de daño.');
+                } else {
+                    console.log('${this.nombre} impone su escudo,tu arma hace contacto con su metal, su carne intacta');
+                }
+                    console.log('${this.nombre} le queda ${this.vida} de vida.');
+            }
+        }
+    </script>
