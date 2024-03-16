@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>El Despertar del Herrero</title>
+    <link rel="stylesheet" href="forja.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+</head>
+<body>
+    <header class="container-fluid">
+        <div class="row">
+            <div class="col">
+                <h1 class="text-center">El Descanso del Herrero</h1>
+            </div>
+        </div>
+    </header>
+    <div class="background-image">
+        <div class="interface">
+            <div class="container p-5 bg-dark text-white">
+                <div class="row align-items-center">
+                    <div class="col-md-3 text-center">
+                        <a href="#" class="profile">
+                            <img src="https://th.bing.com/th/id/OIP.5uZ0EUFo8Vkk4TuTBQHAiwHaKS?rs=1&pid=ImgDetMain" alt="cara del personaje principal Talos dormido" class="rounded-circle profile-img" width="200" height="200">
+                            <div class="profile-text">
+                                <p class="profile-text-name">Nombre: ???</p>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col-md-9">
+                        <div class="game-container">
+                            <h2 class="text-center game-container__title">UBICACION: Pasillo</h2>
+                            <p id="output" class="game-container__output"></p>
+                            <input type="text" id="input" autofocus class="game-container__input">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>  
+    <script>
+        var outputElement = document.getElementById("output");
+        var profileImage = document.querySelector(".profile-img");
+        var nombreElement = document.getElementById("Nombre");
+        // Crea un nuevo elemento de imagen
+    
+        const game = {
+            start: "El pasillo de esta casa está iluminado por la suave luz que se filtra desde una ventana en lo alto. Las paredes de piedra desgastada están adornadas con antiguas pinturas descoloridas. Al final del pasillo, una puerta roja enmarcada por intricados diseños de hierro forjado destaca entre las sombras. A ambos lados del pasillo se abren 2 habitaciones, un estudio y una biblioteca.",
+            rooms: {
+                templo: {
+                    description: "La puerta roja está adornada con un panel que contiene cuatro palancas, cada una de ellacas colgando de cadenas. Las cadenas, hechas de bronce envejecido por el tiempo, añaden un toque de antigüedad y misterio a la puerta. Cada palanca parece tener su propio diseño único, con inscripciones borrosas que sugieren un propósito o significado oculto. Este panel de palancas de bronce contrasta con el color rojo intenso de la puerta, creando una imagen intrigante y cautivadora.",
+                },
+                biblioteca: {
+                    description: "Este cuarto evoca un ambiente de sabiduría y erudición, con estanterías de madera noble que sostienen libros antiguos y rollos de pergaminos. La luz natural se cuela por las ventanas, iluminando los textos con un brillo suave. En una esquina, un atril de lectura permite el estudio tranquilo de los textos más preciados. Entre estos tesoros se encuentran los pergaminos de 'Edipo Rey', las narraciones de los '12 Trabajos de Heracles' y la venerada 'Guía de Pintura de Apolo', cada uno protegido y resguardado como un tesoro invaluable de conocimiento.",
+                },
+                estudio: {
+                    description: "El estudio de pintura está imbuido de una atmósfera creativa, con paredes revestidas de lienzos a medio terminar y estantes repletos de frascos de pigmentos y pinceles de diversos tamaños. En el centro de la habitación, un caballete sostiene un lienzo grande donde emerge un retrato inquietante. La figura retratada parece afligida, con ojos que reflejan una profunda melancolía y tristeza. Los tonos oscuros y sombríos dominan la obra, creando una sensación de pesar y desolación que se contagia por todo el espacio. Aunque la técnica del retrato es magistral, su expresión sombría deja una impresión duradera en quien lo contempla.<p>Sabes que la persona en la pintura es Hefesto</p>"
+                },
+            },
+            items: {
+                libroEdipio: {
+                    description: "El pergamino, amarillento por el paso del tiempo, despliega ante los ojos del lector la historia trágica de Edipo Rey, escrita con letras finas pero firmes que narran los eventos que llevaron a la caída del rey de Tebas. Entre los relatos de la fatalidad y el destino, se destaca una sección dedicada al enigma de la Esfinge, donde las palabras adquieren un aire enigmático:<H1>‘Enigma de la Esfinge</H1>:<p>¿Cuál es la criatura que camina en el amanecer con cuatro patas, al mediodía con dos, y al anochecer con tres?’</p>"
+                },
+                palanca:{
+                    description:"Las imagenes de las palancas son las siguientes: <p>Primera palanca: Muestra un anciano con un baston</p> <p>Segunda palanca: Tiene tallado un bebe gateando</p><p>Tercera palanca: No tiene simbolo</p> <p>Cuarta palanca:Muestra un joven guerrero de pie con sus brazos en su cadera</p>"
+                },
+                retrato:{
+                    description:"Un autoretrato de Hefesto, su rostro tallado con trazos de melancolía y pesar. Sus ojos, profundos y oscuros, reflejan una carga emocional difícil de soportar, mientras que su mirada perdida parece buscar respuestas en un horizonte lejano. Los surcos en su frente cuentan historias de preocupaciones pasadas, y sus labios, apenas entreabiertos, sugieren un susurro silencioso de dolor. <p>no te gusta esta pintura</p> "
+                },
+                pinturas: {
+                    description:"una variada coleccion de pigmentos"
+
+                },
+                pinceles:{
+                    description:"una variada coleccion de pinceles"
+                },
+                retratoRehecho:{
+                    description:"El mismo retrato del hombre, ahora reimaginado con trazos vivaces y tonos cálidos, irradia una nueva energía de felicidad y esperanza. Su rostro, una vez sombrío, ahora se ilumina con una sonrisa radiante que alcanza sus ojos brillantes y llenos de vida. La pesadez que antes marcaba sus rasgos se ha disipado, dejando paso a una expresión de alegría y optimismo. Los colores vibrantes y las pinceladas suaves dan vida a la escena, creando una atmósfera acogedora y llena de vitalidad. Este nuevo retrato invita al espectador a contemplar la belleza y la alegría que puede encontrar incluso en los momentos más oscuros."
+                }
+            },
+            currentRoom: "pasillo",
+            objeto:"",
+            inventory: [],
+            hasPinceles:false,
+            hasReadScrolls:false,
+            hasPinturas:false,
+            hasRetrato:false,
+            isRedone:false,
+            knowsFace:false,
+            output(text) {
+                const outputElement = document.getElementById("output");
+                outputElement.innerHTML = text;
+                const imgElement=document.getElementById("output");
+            },
+            input(event) {
+                if (event.keyCode === 13) {
+                    const inputElement = document.getElementById("input");
+                    const command = inputElement.value.toLowerCase();
+                    inputElement.value = "";
+                    this.processCommand(command);
+                }
+            },
+           processCommand(command) {
+           if (this.currentRoom === "pasillo") {
+                /*investigar cuarto o objetos*/
+                if (command === "investigar estudio") {
+                        this.currentRoom="estudio"
+                        this.output(this.rooms[this.currentRoom].description);
+                }
+                else if (command === "investigar templo") {
+                        this.currentRoom="templo"
+                        this.output(this.rooms[this.currentRoom].description);
+                        
+                }
+                else if (command === "investigar biblioteca") {
+                    this.currentRoom="biblioteca"
+                    this.output(this.rooms[this.currentRoom].description);
+                    
+                }
+                else {
+                this.output("Comando no reconocido. Error TA705. Prueba otro comando.");
+                }
+            }
+            else if(this.currentRoom==="estudio"){
+                /*Comandos de leer*/
+                if(command==="leer pinturas"){
+                    this.output("Los tarros de vidrio tienen pequeñas etiquetas que describren los tonos y los materiales que componen los pigmentos de las <a href='https://historydisclosure.com/how-did-they-make-paint-in-ancient-greece/'>pinturas</a>");
+                }
+                if(commando==="leer pinceles"){
+                    this.output("cada pincel tiene escrito en la madera el tamaño del pincel");
+                }
+                if (commando==="leer retrato"){
+                    if(!this.isRedone){
+                        this.output("En la esquina derecha inferior estan las firmas de Hefesto y la tuya, Talos");
+                    }
+                    else{
+                        this.output("En la esquina derecha inferior estan la firma de Hefesto");
+                    }
+                }
+                /*tomar objetos*/
+                if(command==="tomar pinturas"){
+                    this.output("agarras las pinturas de la mesa");
+                    this.hasPinturas=true;
+                }
+                if(command==="tomar pinceles"){
+                    this.output("agarras los diferentes pinceles de la mesa");
+                    this.hasPinceles=true;
+                    }
+                if (command==="tomar retrato"){
+                    if(!this.isRedone){
+                        this.output("Tomas el retrato con cuidado");
+                        this.hasRetrato=true;
+
+                    }
+                    else{
+                        this.output("El retrato no te gusta, seria mejor dejarlo solo");
+                    }
+                }
+                /*comandos de usar*/
+                if(command==="usar pinturas"){
+                    this.output("agitas los tarros de vidrio, puedes observar como los pigmentos se mueven con el liquido de los tarros");
+                    this.hasPinturas=true;
+                }
+                if(command==="usar pinceles"){
+                    this.output("limpias los pinceles, sus puntas quedan como nuevas");
+                    this.hasPinceles=true;
+                    }
+                if (command==="usar retrato"){
+                    if(!this.hasPinceles && !this.hasPinturas){
+                        this.output("Comienzas a pintar sobre el retrato del hombre triste,con el paso del tiempo, minuto a minuto, el retrato se va iluminando");
+                        this.hasRetrato=true;
+                    }
+                    else if(!this.hasPinceles && this.hasPinturas){
+                        this.output("Tratas de comenzar tu trabajo, pero no puedes hacer mucho con pinceles pero sin pintura");
+                    }
+                    else if(this.hasPinceles && !this.hasPinturas){
+                        this.output("Tratas de comenzar tu trabajo, pero no puedes hacer mucho con pintura pero sin pinceles");
+                    }
+                    else{
+                        this.output("El retrato no te gusta por la tristeza que saca, seria mejor dejarlo solo");
+                    }
+                }
+                /*comando de investigar*/
+
+
+            } 
+        else if (directions.includes(command) && currentRoom.hasOwnProperty(command)) {
+            this.currentRoom = currentRoom[command];
+            this.output(this.rooms[this.currentRoom].description);
+        } else {
+            this.output("Comando no reconocido. Error TA705. Prueba otro comando.");
+        }
+        },
+            init() {
+                document.getElementById("input").addEventListener("keyup", this.input.bind(this));
+                this.output(this.start);
+            }
+        };
+
+        game.init();
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+</body>
+</html>
