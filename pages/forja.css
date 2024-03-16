@@ -1,7 +1,37 @@
-body {
-    font-family: Arial, sans-serif;
-    background-color: #9b2323;
+.game-container {
+    flex: auto;
+    padding: 20px;
+    background-color: black;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(19, 14, 14, 0.1);
 }
+
+/* Estilos para el título del contenedor del juego */
+.game-container__title {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: white;
+}
+
+/* Estilos para la salida del juego */
+.game-container__output {
+    margin-bottom: 10px;
+    padding: 10px;
+    background-color: gray;
+    border-radius: 5px;
+    color: white;
+}
+
+/* Estilos para la entrada del juego */
+.game-container__input {
+    width: calc(100% - 10px);
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid white;
+    font-size: 16px;
+    color: black; /* Color de texto personalizado */
+}
+/* Bloques */
 .background-image {
     background-image: url("https://discoelysium.com/_next/image?url=https:%2F%2Fres.cloudinary.com%2Fdisco-elysium%2Fimages%2Ff_auto%2Cq_auto%2Fv1607523468%2FMedia-Page%2FMedia-Page.png&w=640&q=100");
     background-size: cover;
@@ -16,6 +46,7 @@ body {
     padding-left: 15px;
     margin-right: 0;
     margin-left: 0;
+
 }
 
 .row {
@@ -35,32 +66,22 @@ body {
     text-align: center;
 }
 
-h1 {
-    font-size: 2.5rem; /* Puedes ajustar este tamaño según tus necesidades */
-    font-weight: bold; /* Opcional: para negrita */
-    margin-top: 20px; /* Opcional: ajusta el margen superior según necesites */
-    margin-bottom: 20px; /* Opcional: ajusta el margen inferior según necesites */
-    color: crimson; /* Cambia el color del texto */
-    background-color: darkgoldenrod; 
-   
-}
-
-#game-container {
-   flex: auto;
+/* Elementos */
+.background-image__container {
     padding: 20px;
     background-color: black;
     border-radius: 5px;
     box-shadow: 0 0 10px rgba(19, 14, 14, 0.1);
 }
 
-#output {
+.background-image__output {
     margin-bottom: 10px;
     padding: 10px;
     background-color: gray;
     border-radius: 5px;
 }
 
-.pergamino {
+.background-image__pergamino {
     background-color: palegoldenrod;
     padding: 20px;
     border-radius: 10px;
@@ -69,7 +90,7 @@ h1 {
     color: black;
 }
 
-.pergamino:before {
+.background-image__pergamino:before {
     content: '';
     position: absolute;
     top: -10px;
@@ -82,7 +103,8 @@ h1 {
     border-bottom: 10px solid #f5e6cc;
 }
 
-#input {
+/* Modificadores */
+.background-image__input {
     width: calc(100% - 10px);
     padding: 10px;
     border-radius: 5px;
@@ -90,15 +112,50 @@ h1 {
     font-size: 16px;
 }
 
-.profile-section {
+.background-image__profile-section {
     background-color: #0a233d;
     padding: 20px;
     border-radius: 5px;
 }
 
-.character-info {
+.background-image__character-info {
     background-color: #f8f9fa;
     padding: 20px;
     border-radius: 5px;
     margin-top: 20px;
+}
+h1 {
+    font-size: 2.5rem; /* Puedes ajustar este tamaño según tus necesidades */
+    font-weight: bold; /* Opcional: para negrita */
+    margin-top: 20px; /* Opcional: ajusta el margen superior según necesites */
+    margin-bottom: 20px; /* Opcional: ajusta el margen inferior según necesites */
+    color: crimson; /* Cambia el color del texto */
+    background-color: darkgoldenrod; 
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+h1.text-yellow {
+    color: yellow; /* Cambia el color del texto a amarillo */
+}
+h2 {
+    font-size: 2.5rem; /* Puedes ajustar este tamaño según tus necesidades */
+    font-weight: bold; /* Opcional: para negrita */
+    margin-top: 20px; /* Opcional: ajusta el margen superior según necesites */
+    margin-bottom: 20px; /* Opcional: ajusta el margen inferior según necesites */
+    color: crimson; /* Cambia el color del texto */
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}
+a {
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif; /* Cambia "Tu Fuente Aquí" por el nombre de la fuente que desees */
+    font-weight: normal; /* Puedes ajustar el peso de la fuente según tus preferencias */
+    color: #007bff; /* Cambia el color del texto del enlace según tus preferencias */
+    text-decoration: none; /* Elimina el subrayado predeterminado de los enlaces, si lo deseas */
+}
+
+a:hover {
+    text-decoration: underline; /* Agrega subrayado cuando el enlace está en estado de hover */
+}
+body {
+    font-family: Arial, sans-serif;
+    background-color: #9b2323;
 }
