@@ -1,0 +1,36 @@
+<!--Fuente: https://www.taniarascia.com/getting-started-with-react/ -->
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+
+    <title>Hello React!</title>
+
+    <!-- Cargar los scripts de React + Babel --> 
+    <script src="https://unpkg.com/react@16/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6.26.0/babel.js"></script>
+  </head>
+
+  <body>
+    <!-- Nuestro HTML donde se renderizará la aplicación-->
+    <div id="root"></div>
+
+    <!-- Cargar el código de React + Babel, poner atención a
+    type=text/babel -->
+    <script type="text/babel">
+      // Crear un componente de React
+      class App extends React.Component {
+        render() {
+          return <h1>Hello world!</h1>
+        }
+      }
+
+      // Renderizar la aplicación
+      ReactDOM.render(<App />, document.getElementById('root'))
+    </script>
+  </body>
+</html>
+
+<!-- Este método no es  muy eficiente y es difícil de mantener
+Por ejemplo, se debe precompilar los scripts para producción -->
