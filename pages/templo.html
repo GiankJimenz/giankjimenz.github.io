@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>El Descanso del Herrero</title>
+    <link rel="stylesheet" href="forja.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+</head>
+<body>
+    <header class="container-fluid">
+        <div class="row">
+            <div class="col">
+                <h1 class="text-center">El Descanso del Herrero</h1>
+            </div>
+        </div>
+    </header>
+    <div class="background-image">
+        <div class="interface">
+            <div class="container p-5 bg-dark text-white">
+                <div class="row align-items-center">
+                    <div class="col-md-3 text-center">
+                        <a href="#" class="profile">
+                            <img src="https://th.bing.com/th/id/R.6e580526639bbb48488c8a3f815f5928?rik=bJmdNfCr6P2Y1w&riu=http%3a%2f%2f1.bp.blogspot.com%2f_xOJ2co6B4Jw%2fS1PdT9uA4FI%2fAAAAAAAAAQg%2fuQsY2YTUj24%2fw1200-h630-p-k-no-nu%2fWarforged_Portrait.png&ehk=h1OBl1G4Pzqp3ujUGbPHKWtGxtl8TRL3TN5TFKzAf7g%3d&risl=&pid=ImgRaw&r=0" alt="cara del personaje principal Talos" class="rounded-circle profile-img" width="200" height="200">
+                            <div class="profile-text">
+                                <p class="profile-text-name">Nombre: Talos</p>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col-md-9">
+                        <div class="game-container">
+                            <h2 class="text-center game-container__title">UBICACION: Templo</h2>
+                            <p id="output" class="game-container__output"></p>
+                            <input type="text" id="input" autofocus class="game-container__input">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>  
+    <script>
+        var outputElement = document.getElementById("output");
+        var profileImage = document.querySelector(".profile-img");
+        var nombreElement = document.getElementById("Nombre");
+        const game = {
+            templo: "<p>El templo, una vez magnífico y lleno de esplendor, ahora yace en un estado de abandono y decadencia. Las columnas de mármol están cubiertas de musgo y las estatuas de los dioses han perdido su antiguo esplendor, desgastadas por el paso del tiempo y la indiferencia humana. A lo largo de los pasillos vacíos, la luz del sol se filtra a través de las ventanas rotas, proyectando sombras fantasmales en las paredes desgastadas.</p><p>En el centro del templo, un hombre solitario se sienta frente a una mesa de madera desgastada, absorto en sus pensamientos mientras contempla una extraña máquina de bronce que yace sobre la superficie. La máquina, con sus engranajes retorcidos y extraños símbolos grabados en su superficie, parece estar fuera de lugar en este entorno antiguo y olvidado.</p><p>Detrás del hombre, un vitral resplandece con la imagen de una mujer de una belleza divina, su figura envuelta en un resplandor celestial que ilumina la oscuridad del templo abandonado. Sus ojos parecen seguir al hombre con una mirada penetrante, como si estuviera observando cada movimiento con un interés desconocido.</p><p>A medida que el hombre se sumerge en sus pensamientos, una música suave y rítmica llena el aire, emanando de un tocadiscos antiguo que descansa en una esquina. El sonido de la música de trabajo, con sus melodías tranquilizadoras y sus ritmos constantes, envuelve al hombre en una sensación de calma y concentración, transportándolo a un estado de trance mientras continúa su labor en este santuario olvidado por el tiempo.</p><img src= https://64.media.tumblr.com/f0df55b08f404781c890ff4b7f54462f/198e10161077ef60-22/s2048x3072/f07ef4134bd505de7b51dfd2051ed2a4dc21ea93.pnj alt=interior del templo class=img-fluid width=700 height=300>",
+            secciones: {
+                herrero: {
+                    description: "<p>El herrero, cuyo rostro está marcado por el rastro del fuego y el sudor del trabajo forjador, se encuentra sentado frente a una mesa de madera gastada. La luz de la fragua titila débilmente en la penumbra de su taller, mientras sostiene una pluma entre sus dedos callosos. La carta de comisiones y solicitudes yace frente a él, manchada de hollín y arrugada por el incesante estrujar de sus manos cansadas.</p><p>Sus ojos, antes vivaces y chispeantes con la energía del trabajo creativo, ahora están nublados por el cansancio y el desgaste. La presión de las demandas de los clientes y las exigencias del mercado pesa sobre sus hombros como un yugo pesado. A pesar de la tenacidad que lo caracteriza, su espíritu parece doblegarse bajo el peso de las responsabilidades que le han impuesto. </p><img src= https://64.media.tumblr.com/4931a1d5a98b2f976cf01ef485267145/cf4445eeb4bbcce4-13/s2048x3072/4a946c7161ef55a1222b37b22d1662f130c73e4b.pnj alt=cara de hefesto, de sus ojos salen nubes blancas mostrando su trabajo class=img-fluid width=700 height=300>"
+                },
+                cafetera: {
+                    description: "<p>El mecanismo de bronce se erige majestuoso sobre la mesa del herrero, sus líneas curvas y su superficie pulida reflejan la tenue luz de la fragua cercana. Con una apariencia que evoca la elegancia de épocas pasadas, este intrincado dispositivo es mucho más que una simple cafetera. Tubos de bronce serpentean a través de su estructura, conectando un depósito de agua caliente con el recipiente que contiene el café recién preparado.</p><p>Cada cierto intervalo de tiempo, con un suave zumbido mecánico, el mecanismo se activa, vertiendo con precisión milimétrica una cantidad perfectamente medida de café humeante en la taza del herrero. El aroma rico y estimulante se eleva en el aire, envolviendo al artesano en una nube reconfortante mientras continúa trabajando en sus proyectos.</p> <img src= https://th.bing.com/th/id/R.32b8f0427d73cf2e30ba64ee6435e1dc?rik=2bK0qqjtb8HpQA&pid=ImgRaw&r=0 alt=cafetera de bronce class=img-fluid width=700 height=300>"
+                },
+                cama: {
+                    description: "<p>La cama, adornada con planos, libros y otros materiales, irradia una sensación de utilidad y vitalidad en lugar de abandono. Los libros abiertos sobre las sábanas dan testimonio de la búsqueda constante del conocimiento, mientras que los planos desplegados reflejan la creatividad en proceso. Aunque aparentemente desordenada, cada elemento está colocado con precisión, como si estuviera listo para ser retomado en cualquier momento.</p><img src=https://i.pinimg.com/736x/ea/22/01/ea22010c32dccd16094667a6568d8831--messy-bed-morning-light.jpg alt=cama desordenada class=img-fluid width=700 height=300>"
+                },
+                escritorio: {
+                    description: "<p> un mesa desgastada llena de papeles y materiales para escribir</p><img src=https://th.bing.com/th/id/OIP.DG1UyaC_5Y_r-PQQh_ksfAHaE9?rs=1&pid=ImgDetMain alt=escritorio class=img-fluid width=700 height=300>"
+                },
+                vitral: {
+                    description: "<p>El vitral de la diosa Afrodita resplandece con una belleza celestial y una gracia divina que emana un aura de amor y pasión. En el centro del panel de vidrio, Afrodita se presenta en todo su esplendor, envuelta en una luz dorada que resalta sus rasgos divinos y su feminidad exquisita. Su cabello dorado cae en cascadas ondulantes sobre sus hombros, adornado con perlas y conchas marinas que destellan con destellos de luz. Hay unas extrañas plantas creciendo en la parte inferior del vitral</p><img src=https://64.media.tumblr.com/6ff64982eb3f2afd6bf3fa359c1c8922/99158ed5e01c85a9-ca/s2048x3072/91fcf7d6fe1b4c6c6a25cc88215b4b600fba9844.jpg alt=vitral de afrodita class=img-fluid width=700 height=300>"
+                },
+
+            },
+            items: {
+                carta: {
+                    description: "<p>Un pergamino donde se describe la situacion del Herrero, que debe descansar</p><img src=https://th.bing.com/th/id/OIP.lBINAd3fypI6QpwCYa-FsQHaIE?rs=1&pid=ImgDetMain alt=carta cerrada class=img-fluid width=700 height=300>",
+                },
+                plantas: {
+                    description: "<p>Una planta blanca de pétalos suaves y delicados, se alza con gracia en su maceta, como una guardiana de la tranquilidad. Sus pétalos, como copos de nieve, destilan un aura de paz y serenidad</p> <img src=https://gamepedia.cursecdn.com/discoelysium_gamepedia_en/thumb/9/9b/Dried_may_bells.png/375px-Dried_may_bells.png?version=802cfa5ffaf1c708acb60a83f2d9ea48 alt=plantas con petalos blancos class=img-fluid width=700 height=300>",
+                },
+                campana: {
+                    description: "<p>La campana de bronce, suspendida en el aire con elegancia, emana una presencia imponente y misteriosa. Su superficie pulida refleja la luz de manera sutil, mientras que el símbolo de Hermes, grabado con meticuloso detalle en su base, añade un aire de antigua sabiduría y misterio. Las alas del mensajero de los dioses se extienden majestuosamente a cada lado del símbolo.</p><img src=https://th.bing.com/th/id/OIP.McFlsuyqhklFmq93ncaUcgHaHa?rs=1&pid=ImgDetMain alt=campana de hermes class=img-fluid width=700 height=300>",
+                },
+                tocadiscos: {
+                    description: "<p>un tocadiscos de bronce reposa majestuosamente sobre una mesa de madera envejecida. Sus curvas elegantes y reluciente superficie dorada capturan la luz de la tarde, añadiendo un toque de encanto antiguo al ambiente. Con un suave crujido, la aguja desciende con gracia sobre el vinilo, y de sus altavoces emerge una <a href='https://www.youtube.com/watch?v=qMUoWTEIGx4'>cancion</a></p><img src=https://th.bing.com/th/id/R.56b360bb11fbdcd6cf54f9de84d9ce99?rik=5sQARaUA8pt9dg&pid=ImgRaw&r=0 alt=tocadiscos class=img-fluid width=700 height=300>",
+                },    
+            },
+            currentRoom: "templo",
+            seccion:"",
+            objeto:"",
+            inventory: [],
+            hasCarta:false,
+            hasPetalos:false,
+            isCamaLimpia:false,
+            isMusicaCambiada:false,
+            isCafeCambiada:false,
+            isHerreroDormido:false,
+            hasPlantas:false,
+            output(text) {
+                const outputElement = document.getElementById("output");
+                outputElement.innerHTML = text;
+                const imgElement=document.getElementById("output");
+            },
+            input(event) {
+                if (event.keyCode === 13) {
+                    const inputElement = document.getElementById("input");
+                    const command = inputElement.value.toLowerCase();
+                    inputElement.value = "";
+                    this.processCommand(command);
+                }
+            },
+           processCommand(command) {
+            if (this.currentRoom === "templo") {
+                /*Investigar secciones*/
+                if (command === "investigar herrero") {
+                        if(!this.isCafeCambiada && !this.isMusicaCambiada){
+                            this.seccion="herrero"
+                            this.output(this.secciones[this.seccion].description);
+                        }
+                        else if(!this.isCafeCambiada && this.isMusicaCambiada){
+                            this.output("La musica relaja bastante al herrero pero el cafe lo mantiene despierto");
+                        }
+                        else if(this.isCafeCambiada && !this.isMusicaCambiada){
+                            this.output("El cafe ya no le impide el sueño al herrero pero la musica lo mantiene despierto");
+                        }
+                        else if(this.isCafeCambiada && this.isMusicaCambiada){
+                            if(!this.isCamaLimpia){
+                                this.output("el herrero esta cansado pero al voltearse ve su cama cubierta de objetos, y prefiero no ir a dormir")
+                            }
+                            else{
+                                this.output("El herrero cansado, se dirige a la cama ordenada y despues de dias llenos de trabajo, duerme-<p>Aunque descansa por ahora debes infromarle al Olimpo sobre su sutuacion con una carta</p>");
+                                this.isHerreroDormido=true;
+                            }
+                        }
+                }
+                else if (command === "investigar cafetera") {
+                        this.seccion="cafetera"
+                        this.output(this.secciones[this.seccion].description);       
+                }
+                else if (command === "investigar cama") {
+                        this.seccion="cama"
+                        this.output(this.secciones[this.seccion].description);     
+                }
+                else if (command === "investigar escritorio") {
+                        this.seccion="escritorio"
+                        this.output(this.secciones[this.seccion].description);     
+                }
+                else if (command === "investigar vitral") {
+                        this.seccion="vitral"
+                        this.output(this.secciones[this.seccion].description);     
+                }
+                /*investigar objetos*/
+                else if (command === "investigar tocadiscos") {
+                    this.objeto="tocadiscos"
+                    this.output(this.items[this.objeto].description);
+                }
+                else if (command === "investigar campana") {
+                    this.objeto="campana"
+                    this.output(this.items[this.objeto].description);
+                }
+                else if (command === "investigar plantas") {
+                    this.objeto="plantas"
+                    this.output(this.items[this.objeto].description);
+                }
+                else if (command === "investigar carta") {
+                    if(!this.hasCarta){
+                        this.output("Que carta?");
+                    }
+                    else{
+                        this.objeto="carta"
+                        this.output(this.items[this.objeto].description);
+                    }
+                }
+                /*comandos para leer objetos*/
+                else if (command === "leer tocadiscos") {
+                    this.output("Hay una pequeña placa donde se puede leer <p>'Para:Hefesto'</p><p>'De:Apolo'</p> mas abajo de esta placa hay una seccion donde claramente el que construyo este tocadisco fue Hefesto");
+                }
+                else if (command === "leer campana") {
+                    this.output("Para envios tocar campana");
+                }
+                else if (command === "leer plantas") {
+                    this.output("eso no se puede");
+                }
+                else if (command === "leer carta") {
+                    if(!this.hasCarta){
+                        this.output("Que carta?");
+                    }
+                    else{
+                        this.objeto="carta"
+                        this.output("<div class='background-image__pergamino'><p>Querido Olimpo,</p><p>Con profundo respeto y admiración, me dirijo a ti para compartir una solicitud en nombre de Hefesto, el venerable dios del fuego y la forja. En estos días, he notado que el trabajo incesante y la dedicación incansable de Hefesto han sido notables, pero también evidentes son los signos de fatiga que pesan sobre sus hombros divinos. Su labor incansable en la forja y su compromiso con la creación de maravillas han sido incomparables, pero como cualquier ser, necesita un merecido descanso para recargar sus energías y restaurar su espíritu. Por tanto, humildemente ruego que se le conceda un período de reposo, donde pueda rejuvenecerse y encontrar renovada inspiración para sus labores divinas. Con la esperanza de tu comprensión y benevolencia, confío en que esta petición será considerada con el cuidado y la sabiduría que caracterizan a los habitantes del Olimpo.</p><p>Con gratitud y respeto,Talos edad :7 horas</p></div>");
+                    }
+                }
+                /*comandos para usar secciones del templo*/
+                else if (command === "usar cafetera") {
+                    if(!this.hasPetalos){
+                        this.output("Abres una pequeña compuerta al lado de la cafetera, puedes ver la seccion donde la maquina se alimenta de los granos de cafe, talves si pones algo aqui podria cambair el cafe");
+                    }
+                    else{
+                        this.output("Pones los petalos dentro de la pequeña compuerta y ves como el agua caliente se mezcla con los petalos, haciendo el cafe mas blanco con aroma de vanilla, el herrero al tomar esto se le ve mas cansado que antes <img src=https://th.bing.com/th/id/OIP.tRlEsTuxKLyrZuVCsAIgngDIEs?rs=1&pid=ImgDetMain alt=cafe blanco class=img-fluid width=700 height=300>");
+                        this.isCafeCambiada=true;
+                    }     
+                }
+                else if (command === "usar cama") {
+                    this.output("Quitas los libros,pinceles, y todo los otros objetos que cubren la cama, luego arreglas las cobijas de esta, dejandola ordenada ");     
+                    this.isCamaLimpia=true;
+                }
+                else if (command === "usar escritorio") {
+                    if(!this.isHerreroDormido){
+                        this.output("Hefesto esta utilizando el escritorio, no tienes acceso a el");
+                    }
+                    else{
+                        this.output("Usar los materiales sobre el escritorio para poder escribir una carta");
+                        this.hasCarta=true;
+                    }    
+                }
+                else if (command === "usar vitral") {
+                        this.output("Se ve fragil mejor no usarlo");   
+                }
+                /*comandos para usar objetos*/
+                else if (command === "usar tocadiscos") {
+                    this.output("Buscas entre los discos a la par del tocadiscos y seleccionas uno basntante viejo y usado, lo pones en tocadisco. Este comienza a tocar la siguiente <a href='https://www.youtube.com/watch?v=54moBCJSfXg&list=OLAK5uy_n9enLNuLjWTn67qj2aXP6FuJbX239vQdI&index=25'>cancion</a> la cual produce una diferente energia, una de descanso y relajacion, puedes escuchar al herrero bostezar");
+                    this.isMusicaCambiada=true;
+                }
+                else if (command === "usar campana") {
+                    if(!this.isHerreroDormido){
+                        this.output("Antes de poder usar la a campana el herrero te detiene 'No he terminado mi trabajo, todavia no lo puedo llamar' y vuelve a su trabajo");
+                    }
+                    else{
+                        if(!this.hasCarta){
+                            this.output("Deberias primero hacer una carta para enviar");
+                        }
+                        else{
+                            this.output("<p>Despues de un par minutos, una ser de luz aparece dentro del templo, Hermes, dios de los mensajeros.</p><p>Le describes la situacion al dios, explicandole el gran tamaño de trabajo que ha tenido el herrero,Hemres observa la mesa de trabajo y toma la carta.</p><p>No sabes que pasara ahora, pero lo que si sabes es que el Herrero por ahora descansara</p><h3>GRACIAS POR JUGAR</h3>");
+                        }
+                    }
+                }
+                else if (command === "usar plantas") {
+                    if(!this.hasPlantas){
+                        this.output("deberias tomar las plantas primero");
+                    }
+                    else{
+                        this.output("quitas uno por uno los petalos de las plantas");
+                        this.hasPetalos=true;
+                    }
+                }
+                /* comandos para tomar objetos*/
+                else if (command === "tomar tocadiscos") {
+                    this.output("es muy pesado para cargarlo");
+                }
+                else if (command === "tomar campana") {
+                   this.output("La campana esta muy bien sujetada, no la puedes tomar"); 
+                        
+                }
+                else if (command === "tomar plantas") {
+                    this.output("Con muchos cuidado tomas las plantas");
+                    this.hasPlantas=true;
+                }
+                else {
+                this.output("Comando no reconocido. Error TA705. Prueba otro comando.");
+                }
+                
+            }},
+            init() {
+                document.getElementById("input").addEventListener("keyup", this.input.bind(this));
+                this.output(this.templo);
+            }
+        };
+
+        game.init();
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+</body>
+</html>
