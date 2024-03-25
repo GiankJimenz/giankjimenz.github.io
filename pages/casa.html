@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>El Despertar del Herrero</title>
+    <title>El Descanso del Herrero</title>
     <link rel="stylesheet" href="forja.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 </head>
@@ -59,7 +59,7 @@
             },
             items: {
                 libroEdipio: {
-                    description: "El pergamino, amarillento por el paso del tiempo, despliega ante los ojos del lector la historia trágica de Edipo Rey, escrita con letras finas pero firmes que narran los eventos que llevaron a la caída del rey de Tebas. Entre los relatos de la fatalidad y el destino, se destaca una sección dedicada al enigma de la Esfinge, donde las palabras adquieren un aire enigmático:<div class='background-image__pergamino'> ‘Enigma de la Esfinge</H1>:<p>¿Cuál es la criatura que camina en el amanecer con cuatro patas, al mediodía con dos, y al anochecer con tres?’</p></div> <img src=https://th.bing.com/th/id/R.b0710bcc1e0b4c54ba295658c192aa4d?rik=0Ir7Levz%2bzqNdA&pid=ImgRaw&r=0 alt=portada de edipo rey class=img-fluid width=700 height=300>",
+                    description: "El pergamino, amarillento por el paso del tiempo, despliega ante los ojos del lector la historia trágica de Edipo Rey, escrita con letras finas pero firmes que narran los eventos que llevaron a la caída del rey de Tebas. Entre los relatos de la fatalidad y el destino, se destaca una sección dedicada al enigma de la Esfinge, donde las palabras adquieren un aire enigmático:href ‘Enigma de la Esfinge</H1>:<p>¿Cuál es la criatura que camina en el amanecer con cuatro patas, al mediodía con dos, y al anochecer con tres?’</p></div> <img src=https://th.bing.com/th/id/R.b0710bcc1e0b4c54ba295658c192aa4d?rik=0Ir7Levz%2bzqNdA&pid=ImgRaw&r=0 alt=portada de edipo rey class=img-fluid width=700 height=300>",
                 },
                 libroHerakles: {
                     description: "El pergamino, amarillento por el paso del tiempo, despliega ante los ojos del lector la saga del heroe Herakles, escrita con letras finas pero firmes que narran los eventos que llevaron a la salvacion de este heroe.<img src=https://i.pinimg.com/originals/2c/b8/cc/2cb8cc25846023c7c6d9d17c0d39d75c.jpg alt=portada de los 12 labores de herakles class=img-fluid width=700 height=300>",
@@ -112,15 +112,21 @@
                 if (command === "investigar estudio") {
                         this.currentRoom="estudio"
                         this.output(this.rooms[this.currentRoom].description);
+                        const titulo = document.querySelector('h2');
+                        titulo.textContent = "UBICACION: ESTUDIO DE ARTE";
                 }
                 else if (command === "investigar puerta") {
                         this.currentRoom="templo"
                         this.output(this.rooms[this.currentRoom].description);
+                        const titulo = document.querySelector('h2');
+                        titulo.textContent = "UBICACION: PUERTA DEL TEMPLO";
                         
                 }
                 else if (command === "investigar biblioteca") {
                     this.currentRoom="biblioteca"
                     this.output(this.rooms[this.currentRoom].description);
+                    const titulo = document.querySelector('h2');
+                    titulo.textContent = "UBICACION: BIBLIOTECA";
                     
                 }
                 else {
@@ -285,7 +291,7 @@
                 /*comando de usar*/
                 else if(command==="usar palancas"){
                     if(this.hasReadEdipo){
-                        this.output("Conectas el acertijo de la esfinge con las imagenes en la palancas.<p>Jalas primero la palanca con el bebe gateadno, despues la con el hombre en su joventud, luego la palanca con el anciano con el baston, por ultimo jalas la palanca sin ninguna imagen</p> La puerta se abre lentamente, la musica suena mas fuerte y puedes entrar al templo")
+                        this.output("Conectas el acertijo de la esfinge con las imagenes en la palancas.<p>Jalas primero la palanca con el bebe gateadno, despues la con el hombre en su joventud, luego la palanca con el anciano con el baston, por ultimo jalas la palanca sin ninguna imagen</p> La puerta se abre lentamente, la musica suena mas fuerte y puedes entrar al <a href='templo.html'>templo</a>")
                     }
                     else {
                         this.output("Comienzas a mover las palancas en secuencias aleatorias pero no sucede nada")
