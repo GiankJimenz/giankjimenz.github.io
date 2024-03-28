@@ -113,13 +113,14 @@
 }
 
 .background-image__profile-section {
-    background-color: #acf0eb;
+    background-color: #0a3d39;
     padding: 20px;
     border-radius: 5px;
 }
 
 .background-image__character-info {
-    background-color: #f8f9fa;
+    background-color: white;
+
     padding: 20px;
     border-radius: 5px;
     margin-top: 20px;
@@ -148,7 +149,7 @@ h2 {
 a {
     font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif; /* Cambia "Tu Fuente Aquí" por el nombre de la fuente que desees */
     font-weight: normal; /* Puedes ajustar el peso de la fuente según tus preferencias */
-    color: #007bff; /* Cambia el color del texto del enlace según tus preferencias */
+    color: white; /* Cambia el color del texto del enlace según tus preferencias */
     text-decoration: none; /* Elimina el subrayado predeterminado de los enlaces, si lo deseas */
 }
 
