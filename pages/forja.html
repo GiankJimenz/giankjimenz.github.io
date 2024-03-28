@@ -30,10 +30,10 @@
                     <div class="col-md-3 text-center">
                         <a href="#" class="profile">
                             <!-- Imagen del perfil del personaje -->
-                            <img src="https://th.bing.com/th/id/OIP.5uZ0EUFo8Vkk4TuTBQHAiwHaKS?rs=1&pid=ImgDetMain" alt="cara del personaje principal Talos dormido" class="rounded-circle profile-img" width="200" height="200">
+                            <img src="https://th.bing.com/th/id/OIP.5uZ0EUFo8Vkk4TuTBQHAiwHaKS?rs=1&pid=ImgDetMain" alt="cara del personaje principal Talos dormido" class="rounded-circle profile-img" width="200" height="200" aria-label="Imagen del perfil del personaje">
                             <!-- Texto del perfil del personaje -->
                             <div class="profile-text">
-                                <p class="profile-text-name">Nombre: ???</p>
+                                <p class="profile-text-name" aria-label="Nombre del personaje">Nombre: ???</p>
                             </div>
                         </a>
                     </div>
@@ -42,10 +42,10 @@
                         <div class="game-container">
                             <h2 class="text-center game-container__title">UBICACION: ???</h2>
                              <!-- Ouput del juego -->
-                            <p id="output" class="game-container__output"></p>
+                            <p id="output" class="game-container__output" aria-live="polite" aria-atomic="true"></p>
                              <!-- Input del usuario -->
-                             <label for="input" class:".game-container__inputlabel">Accion:</label>
-                            <input type="text" id="input" autofocus class="game-container__input">
+                             <label for="input" class=".game-container__inputlabel" aria-label="Etiqueta para la entrada del usuario">Accion:</label>
+                            <input type="text" id="input" autofocus class="game-container__input" aria-label="Entrada del usuario">
                         </div>
                     </div>
                 </div>
@@ -81,16 +81,16 @@
                     description: "La superficie de la mesa está cubierta con una fina capa de aceite mineral, que ayuda a prevenir la oxidación del metal y facilita el trabajo de los herreros. El aceite se ha impregnado en la madera, creando un brillo suave y un aroma característico que impregna el aire de la forja. Hay cientos de cortes por encima de la mesa, algunos parece formar palabras. Uno de los moldes te llama la atencion<img src=https://cdnb.artstation.com/p/assets/images/images/036/984/579/large/joseph-feely-bilbo-s-study-resized.jpg?1619150623 alt=Pov del personaje principal class=img-fluid width=700 height=300>"
                 },
                 espejo:{
-                    description:"Un espejo sucio con polvo refleja una imagen borrosa y distorsionada. La superficie del espejo está cubierta con una capa de polvo que difumina los reflejos nítidos y hace que la imagen reflejada parezca opaca y descolorida. Pequeñas partículas de polvo se acumulan en la superficie del espejo, creando manchas irregulares que interrumpen la claridad del reflejo.Ademas en los bordes parece que alguien ha escrito algo<img src=https://i.pinimg.com/736x/27/ba/60/27ba606881fd4cd5d2acbc02c5be9007.jpg alt=Pov del personaje principal class=img-fluid width=700 height=300>"
+                    description:"Un espejo sucio con polvo refleja una imagen borrosa y distorsionada. La superficie del espejo está cubierta con una capa de polvo que difumina los reflejos nítidos y hace que la imagen reflejada parezca opaca y descolorida. Pequeñas partículas de polvo se acumulan en la superficie del espejo, creando manchas irregulares que interrumpen la claridad del reflejo.Ademas en los bordes parece que alguien ha escrito algo<img src=https://i.pinimg.com/736x/27/ba/60/27ba606881fd4cd5d2acbc02c5be9007.jpg alt=Pov del personaje principal class=img-fluid width=700 height=300>",
                 }
             },
             /**los objetos que el juegador puede recolectar*/
             items: {
                 molde: {
-                    description: "Un molde hecho con delicadesa por un gran artesano<img src=https://th.bing.com/th/id/OIP._FpUQ4ekf4f4JYCXtxb0OAHaFj?rs=1&pid=ImgDetMain alt=Pov del personaje principal class=img-fluid width=700 height=300>"
+                    description: "Un molde hecho con delicadesa por un gran artesano<img src=https://th.bing.com/th/id/OIP._FpUQ4ekf4f4JYCXtxb0OAHaFj?rs=1&pid=ImgDetMain alt=Pov del personaje principal class=img-fluid width=700 height=300>",
                 },
                 llave: {
-                    description: "Una llave fea hecha de un metal hermoso, cualquier herrero que viese esto estaria asqueado por esta imagen, pero no deberias medir tu trabajo por las opiniones de otras personas, hiciste lo mejor que pudiste<img src=https://i.pinimg.com/736x/74/1d/38/741d38b624c53726a99fd9c8443a6e28--antique-keys-vintage-keys.jpg alt=Pov del personaje principal class=img-fluid width=700 height=300>"
+                    description: "Una llave fea hecha de un metal hermoso, cualquier herrero que viese esto estaria asqueado por esta imagen, pero no deberias medir tu trabajo por las opiniones de otras personas, hiciste lo mejor que pudiste<img src=https://i.pinimg.com/736x/74/1d/38/741d38b624c53726a99fd9c8443a6e28--antique-keys-vintage-keys.jpg alt=Pov del personaje principal class=img-fluid width=700 height=300>",
                 }
             },
             /**propiedades del jugador, algunas secciones revisara su estado para obtener un diferentes resultado*/
@@ -164,176 +164,62 @@
                  }
                 else if (command === "leer llave") {
                     
-                    this.output("¿como vas a leer una llave? ....oh no espera si dice algo en el metal <p>Κατασκευάζεται στην Αίτνα</p>Hecho en monte Etna");
-               
-                }
-                else if (command === "leer puerta") {
-                
-                    this.output("¿como vas a leer una puerta?");
+                    this.output("¿como vas a leer una llave? ....oh no espera si dice algo en el metal <p>Κατασκευάζεται στην Αίτνα</p>..uhm bueno, el nombre suena elegante<img src=https://i.pinimg.com/736x/74/1d/38/741d38b624c53726a99fd9c8443a6e28--antique-keys-vintage-keys.jpg alt=Pov del personaje principal class=img-fluid width=700 height=300>");
                 }
                 else if (command === "leer molde") {
                     
-                    this.output("un su parte de inferior dice llave puerta forja");
+                    this.output("Un molde hecho con delicadesa por un gran artesano <p><h3>Este molde te permitira moldear metal en llaves u otras cosas...supongo</h3><img src=https://th.bing.com/th/id/OIP._FpUQ4ekf4f4JYCXtxb0OAHaFj?rs=1&pid=ImgDetMain alt=Pov del personaje principal class=img-fluid width=700 height=300></p>");
                 }
-            
-                else if (command === "leer espejo") {
-                
-                    this.output("Parece que hay algo escrito en el marco <p>No te asustes, el monstruo en el espejo eres tu</p>....parece a la letra de Hefesto");
-                 }
-                else if (command === "leer mesa") {
-                
-                    this.output("Hay un dibujo raspado con un cuchillo en la madera de la mesa, parece un corazon con Afrodita+Hefesto escrito dentro de el");
-                }
-                /*comandos de usar los objetos*/
-                else if (command === "usar horno") {
-                    if(!this.hasMolde){
-                        this.output("Mueves el horno para que fluya el metal fundido fuera de su compuerta, el metal se riega en el suelo, el color del metal cuando se enfria es el mismo al de tu piel");}
-                    else{
-                        this.output("Mueves el horno para que fluja el metal fundido fuera de su compuerta, pones el molde en posicion para que sea llenado por el brillante liquido. <p> ya lleno y despues de unos minutos sacas una nueva llave del molde</p>")
-                        this.hasLlave=true;
+                /*Comandos de output que saldra si el jugador trata de ver en su entorno*/
+                else if (command === "ver alrededor") {
+                    this.output(this.rooms[this.currentRoom].description);
+                    const imgElement=document.getElementById("output");
+                    /*Cambiar la imagen dependiendo de donde se encuentre el usuario*/
+                    if (this.currentRoom === "forja") {
+                        imgElement.innerHTML = '<img src="https://th.bing.com/th/id/R.7e89eee8b6dc371f6bfb17d00f0332e2?rik=6phtlRCsaw6aNg&pid=ImgRaw&r=0" alt="Imagen de la forja" class="img-fluid" width="700" height="300">';
+                    } else if (this.currentRoom === "paredes") {
+                        imgElement.innerHTML = '<img src="https://i.pinimg.com/originals/f5/3f/d9/f53fd9221a66460a1110759040374026.jpg" alt="Imagen de las paredes" class="img-fluid" width="700" height="300">';
+                    } else if (this.currentRoom === "puertas") {
+                        imgElement.innerHTML = '<img src="https://i.pinimg.com/736x/27/ba/60/27ba606881fd4cd5d2acbc02c5be9007.jpg" alt="Imagen de las puertas" class="img-fluid" width="700" height="300">';
+                    } else if (this.currentRoom === "horno") {
+                        imgElement.innerHTML = '<img src="https://render.fineartamerica.com/images/rendered/search/print/5.375/8.000/break/images/artworkimages/medium/2/steel-worker-in-protective-clothing-freeprod33.jpg?1619150623" alt="Imagen del horno" class="img-fluid" width="700" height="300">';
+                    } else if (this.currentRoom === "mesasTrabajo") {
+                        imgElement.innerHTML = '<img src="https://cdnb.artstation.com/p/assets/images/images/036/984/579/large/joseph-feely-bilbo-s-study-resized.jpg?1619150623" alt="Imagen de las mesas de trabajo" class="img-fluid" width="700" height="300">';
+                    } else if (this.currentRoom === "espejo") {
+                        imgElement.innerHTML = '<img src="https://i.pinimg.com/736x/27/ba/60/27ba606881fd4cd5d2acbc02c5be9007.jpg" alt="Imagen del espejo" class="img-fluid" width="700" height="300">';
                     }
                 }
-                else if (command === "usar llave") {
-                    if(!this.hasLlave){
-                        this.output("Que llave?");}
-                    else{
-                        this.output("Te mueves hacia la puerta de hierro, pones la llave en la cerradura y la mueves hasta escuchar un click fuerte")
-                        this.isCerrado=false;
-                    }
-                }
-        
-                else if (command === "usar puerta") {
-                    /*revisa si la puerta no esta cerrada y si no lo esta avanza al siguiente nivel*/
-                    if(!this.isCerrado){
-                        const casaURL = "casa.html";
-                        this.output("empujas la puerta, vuelves a mirrar la forja una vez mas pero dicides continuar con tu exploracion, y sales <a href='casa.html'> a la casa</a>");}
-                    else{
-                        this.output("empujas la puerta, pero algo dentro de esta mismo evita que continues, al estudiarla por unos momentos mas aprendes que la culpable de esta situacion en la cerradura, deberias apuñalarle <p>preferiblemente con una llave</p>")
-                    }
-                }
-                else if (command === "usar espejo") {
-                    this.output("Limpias la suciedad para alfin averiguar que son esas luces azules que te ven y descubres.....<p>tu reflejo</p><img src=espejo.jpg alt=Pov del pc viendose en el espejo class=img-fluid width=700 height=300 aria-label:'reflejo del pc en el espejo'>");
-                    /*Si cambia la imagen de perfil*/
-                    profileImage.src = "https://th.bing.com/th/id/R.6e580526639bbb48488c8a3f815f5928?rik=bJmdNfCr6P2Y1w&riu=http%3a%2f%2f1.bp.blogspot.com%2f_xOJ2co6B4Jw%2fS1PdT9uA4FI%2fAAAAAAAAAQg%2fuQsY2YTUj24%2fw1200-h630-p-k-no-nu%2fWarforged_Portrait.png&ehk=h1OBl1G4Pzqp3ujUGbPHKWtGxtl8TRL3TN5TFKzAf7g%3d&risl=&pid=ImgRaw&r=0";
-                }
-                else if (command === "usar pergaminos") {
-                    this.output('juegas unos momentos con los pergaminos, tratas de formar una mariposa con ellos, extrañamente en tu memoria tienes las <a href="https://www.instructables.com/How-to-Make-an-Origami-Butterfly-1/">instrucciones</a> para completar esta tarea');
-                }
-                /*comandos de tomar objetos */
-                else if (command === "tomar horno") {                   
-                    this.output("abrazas el horno caliente, tus brazos comienza a tornarse un rojo vivo, pero no sientes dolor. Tratas de levantar el horno pero esta bien puesto");
-                }
-                else if (command === "tomar llave") {
-                    /*revisa si se creo la llave, si no es cierto le pregunta que llave*/
-                    if(!this.hasLlave){
-                        this.output("Que llave?");}
-                    else{
-                        this.output("ya tienes la llave contigo")
-                    }
-                }
-                else if (command === "tomar molde") {
-                    /*revisa si el personaje no tiene el molde*/
-                    if(!this.hasMolde){
-                        this.output("tomas el molde de la mesa");
-                        this.hasMolde=true;}
-                    else{
-                        this.output("ya tienes el molde")
-    
-                    }
-                }
-                else if (command === "tomar puerta") {
-                
-                        this.output("jajajaja.....espera es enserio? no, no puedes tomar la puerta");}
-                
-                else if (command === "tomar pergaminos") {
-                    /*revisa si el personaje no ha tomado ya los pergaminos*/
-                    if(!hasReadScrolls){
-                        this.output("tomas los pergaminos de la mesa, el papel esta sucio");
-                    }
-                    else{
-                        this.output("ya tienes los pergaminos");
-                    }       
-                }
-                /*investigar cuarto o objetos*/
+                /*Comandos de investigar*/
                 else if (command === "investigar forja") {
-                  
-                        this.currentRoom="forja"
-                        this.output(this.rooms[this.currentRoom].description);
-                        
-           
+                    this.output("Encuentras una llave tirada en una esquina <img src=https://i.pinimg.com/736x/74/1d/38/741d38b624c53726a99fd9c8443a6e28--antique-keys-vintage-keys.jpg alt=Pov del personaje principal class=img-fluid width=700 height=300>");
+                    this.hasLlave = true;
                 }
-                else if (command === "investigar llave") {
-                        this.objeto="llave"
-                        this.output(this.items[this.objeto].description);
-                        this.currentRoom="forja"
-                        
+                else if (command === "investigar mesas de trabajo") {
+                    this.output("Despues de revisar entre todos los pergaminos encuentras uno que destaca<img src=https://th.bing.com/th/id/OIP._FpUQ4ekf4f4JYCXtxb0OAHaFj?rs=1&pid=ImgDetMain alt=Pov del personaje principal class=img-fluid width=700 height=300>");
+                    this.hasMolde = true;
                 }
-                else if (command === "investigar paredes") {
-                 
-                        this.currentRoom="paredes"
-                        this.output(this.rooms[this.currentRoom].description);
-                        this.currentRoom="forja"
-                    
-                }
-                else if (command === "investigar puertas") {
-                 
-                 this.currentRoom="puertas"
-                 this.output(this.rooms[this.currentRoom].description);
-                 this.currentRoom="forja"
-             
-                }
-                else if (command === "investigar horno") {
-                 
-                 this.currentRoom="horno"
-                 this.output(this.rooms[this.currentRoom].description);
-                 this.currentRoom="forja"
-             
-                }
-                else if (command === "investigar mesa") {
-                 
-                 this.currentRoom="mesasTrabajo"
-                 this.output(this.rooms[this.currentRoom].description);
-                 this.currentRoom="forja"
-             
-                }
-                else if (command === "investigar luces") {
-                 
-                 this.currentRoom="espejo"
-                 this.output(this.rooms[this.currentRoom].description);
-                 this.currentRoom="forja"
-               
-             
-                }
-                else if (command === "investigar molde") {
-                 
-                 this.objeto="molde"
-                 this.output(this.items[this.objeto].description);
-                 this.currentRoom="forja"
-             
+                else if (command === "investigar espejo") {
+                    this.output("Despues de limpiar el polvo del espejo, con tu dedo descubres unos grabados<p>Es hora de que este te lleve a un lugar mejor</p>");
+                    this.isCerrado = false;
                 }
                 else {
-                this.output("Comando no reconocido. Error TA705. Prueba otro comando.");
+                    this.output("No entiendo el comando <em>" + command + "</em>");
+                }
             }
         }
-            /*si el comando no esta bien escrito o si el jugador pone algun comando no es valido(los validos es tomar,usar,leer,investgar) sale el siguinete mensjae*/
-            else {
-                this.output("Comando no reconocido. Error TA705. Prueba otro comando.");
-        }
-            
-        } 
-        },
-        /*comando para inciar el juego*/
-            init() {
-                document.getElementById("input").addEventListener("keyup", this.input.bind(this));
-                this.output(this.start);
-            }
+    },
         };
-        /*incia el juego*/
 
-        game.init();
-    
+        /** Funcion que ejecuta el juego*/
+        function playGame() {
+            game.output(game.start);
+            /* Espera a que el jugador introduzca un comando */
+            window.addEventListener("keydown", function (event) {
+                game.input(event);
+            });
+        }
+        /*inicio del juego*/
+        playGame();
     </script>
-    <!-- Enlace al archivo JavaScript de Bootstrap, que incluye todas las funcionalidades de Bootstrap (como modales, deslizadores, etc.) -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </body>
 </html>
