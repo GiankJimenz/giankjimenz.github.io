@@ -1,36 +1,49 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
+    <!-- Sección de encabezado -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>El Despertar del Herrero</title>
+   <!-- Enlace al archivo CSS personalizado -->
     <link rel="stylesheet" href="forja.css">
+    <!-- Enlace a la biblioteca CSS de Bootstrap -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 </head>
 <body>
+    <!-- Encabezado -->
     <header class="container-fluid">
         <div class="row">
             <div class="col">
+                <!-- Título principal -->
                 <h1 class="text-center">El Descanso del Herrero</h1>
             </div>
         </div>
     </header>
+    <!-- Contenedor principal con imagen de fondo -->
     <div class="background-image">
         <div class="interface">
+            <!-- Contenedor principal del juego -->
             <div class="container p-5 bg-dark text-white">
                 <div class="row align-items-center">
+                    <!-- Columna para el perfil del personaje -->
                     <div class="col-md-3 text-center">
                         <a href="#" class="profile">
+                            <!-- Imagen del perfil del personaje -->
                             <img src="https://th.bing.com/th/id/OIP.5uZ0EUFo8Vkk4TuTBQHAiwHaKS?rs=1&pid=ImgDetMain" alt="cara del personaje principal Talos dormido" class="rounded-circle profile-img" width="200" height="200">
+                            <!-- Texto del perfil del personaje -->
                             <div class="profile-text">
                                 <p class="profile-text-name">Nombre: ???</p>
                             </div>
                         </a>
                     </div>
+                    <!-- Columna para el contenedor del juego -->
                     <div class="col-md-9">
                         <div class="game-container">
                             <h2 class="text-center game-container__title">UBICACION: ???</h2>
+                             <!-- Ouput del juego -->
                             <p id="output" class="game-container__output"></p>
+                             <!-- Input del usuario -->
                             <input type="text" id="input" autofocus class="game-container__input">
                         </div>
                     </div>
@@ -38,15 +51,18 @@
             </div>
         </div>
     </div>
+    <!-- Enlaces a archivos JavaScript de bootstrap -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
     <script>
+        /** variables globales*/
         var outputElement = document.getElementById("output");
         var profileImage = document.querySelector(".profile-img");
         var nombreElement = document.querySelector(".profile-text-name");
-        // Crea un nuevo elemento de imagen
-    
+        /** objeto del juego*/
         const game = {
+            /** inciio del juego, lo que vera primera el jugador*/
             start: "Nada denuevo. Cuantos dias has estado dormido? Talves deberias contar los segundos, uno por uno, para evitar la locura de las espera, tambien podrias tartar de volver a dormir(estas creciendo ocupas el descanso) o puedes seleccionar la opcion mas dificil y despertar<img src=https://wallpapercave.com/wp/wp5798556.png alt=Pov del personaje principal class=img-fluid width=700 height=300>",
+            /** las diferentes secciones de la forja con su descripcion e imagen*/
             rooms: {
                 forja: {
                     description: "Te encuentras frente a una imponente estructura de piedra, la forja se yergue como un bastión de trabajo en medio del paisaje. Sus muros sólidos y robustos están construidos con ladrillos oscuros y gastados por el calor y el tiempo, evidencia del trabajo incansable que se lleva a cabo dentro de sus confines.A la par tuya hay mesas de trabajo  llenos de herramientas y equipos metalúrgicos: martillos de diferentes tamaños, tenazas, moldes y recipientes con agua para templar el metal. En un rincón, se encuentra un gran horno de fundición, donde el metal se calienta hasta alcanzar su punto de fusión, listo para ser moldeado en nuevas creaciones.Justo al frente tuyo todavia puedes observar dos puntos azules observandote a la par de estos hay una puerta de hierro forjado<img src=https://th.bing.com/th/id/R.7e89eee8b6dc371f6bfb17d00f0332e2?rik=6phtlRCsaw6aNg&pid=ImgRaw&r=0 alt=Pov del personaje principal class=img-fluid width=700 height=300>",
@@ -67,6 +83,7 @@
                     description:"Un espejo sucio con polvo refleja una imagen borrosa y distorsionada. La superficie del espejo está cubierta con una capa de polvo que difumina los reflejos nítidos y hace que la imagen reflejada parezca opaca y descolorida. Pequeñas partículas de polvo se acumulan en la superficie del espejo, creando manchas irregulares que interrumpen la claridad del reflejo.Ademas en los bordes parece que alguien ha escrito algo<img src=https://i.pinimg.com/736x/27/ba/60/27ba606881fd4cd5d2acbc02c5be9007.jpg alt=Pov del personaje principal class=img-fluid width=700 height=300>"
                 }
             },
+            /**los objetos que el juegador puede recolectar*/
             items: {
                 molde: {
                     description: "Un molde hecho con delicadesa por un gran artesano<img src=https://th.bing.com/th/id/OIP._FpUQ4ekf4f4JYCXtxb0OAHaFj?rs=1&pid=ImgDetMain alt=Pov del personaje principal class=img-fluid width=700 height=300>"
@@ -75,20 +92,22 @@
                     description: "Una llave fea hecha de un metal hermoso, cualquier herrero que viese esto estaria asqueado por esta imagen, pero no deberias medir tu trabajo por las opiniones de otras personas, hiciste lo mejor que pudiste<img src=https://i.pinimg.com/736x/74/1d/38/741d38b624c53726a99fd9c8443a6e28--antique-keys-vintage-keys.jpg alt=Pov del personaje principal class=img-fluid width=700 height=300>"
                 }
             },
+            /**propiedades del jugador, algunas secciones revisara su estado para obtener un diferentes resultado*/
             currentRoom: "forja",
             objeto:"",
-            inventory: [],
             sleeping:true,
             hasReadScrolls:false,
             hasMolde:false,
             hasLlave:false,
             isCerrado:true,
             knowsFace:false,
+            /*Función para manejar la salida del juego*/
             output(text) {
                 const outputElement = document.getElementById("output");
                 outputElement.innerHTML = text;
                 const imgElement=document.getElementById("output");
             },
+            /*Función para manejar el input del usuario*/
             input(event) {
                 if (event.keyCode === 13) {
                     const inputElement = document.getElementById("input");
@@ -97,13 +116,17 @@
                     this.processCommand(command);
                 }
             },
+            /*funcion para procesar los inputs del jugador*/
            processCommand(command) {
            if (this.currentRoom === "forja") {
+            /*Comandos de output que saldran si el personaje del juagdor esta dormido*/
             if (this.sleeping){
+                /*Comandos de output que saldra si el jugador trata de dormir estando dormido*/
                 if (command === "dormir") {
                     this.output("Tratas de volver a dormir, abraza la oscuridad y utiliza la energía para crecer y ser un hombre alto y fuerte. Tu mente está con un solo comando *DORMIR*, después de un par, lo que sientes como horas, empiezas a odiarte, ¿cómo es que no puedes dormirte? ¡Has estado pensando solo en dormir! Piensas más y más fuerte en dormir hasta que ya sientes tu mente apagarse. AL FIN! OH HYPNOS LLEVA A ESTE FIEL CIERVO AL DULCE REINO DE-......a quien engañas, no puedes dormir<img src=https://wallpapercave.com/wp/wp5798556.png alt=Pov del personaje principal class=img-fluid width=700 height=300>");
                     this.sleeping=false;
                 }
+                /*Comandos de output que saldra si el jugador se despierta estando dormido*/
                 else if (command === "despertar") {
                     this.output("Abres los ojos y tratas de respirar, no puedes, oh dioses<p> NO PUEDES RESPIRAR</p> un momento de miedo arrastras tus dedos sobre tu boca<p>....y no sientas nada, mueves tu dedos arriba y descubres que tu naris tambien hace falta, miras tus manos, todo normal, tres dedos que pueden moverse normalmente.Miras a tu alrededor y puedes observar que estas en una forja</p> hay una mesa cerca de ti con un monton de pergarminos, ademas hay un par de luces al norte donde estas en el momento");
                     this.sleeping = false;
@@ -111,16 +134,21 @@
                     titulo.textContent = "UBICACION: FORJA";
 
                 }
+                /*Comandos de output que saldra si el jugador trata de hacer cualuqier otra cosa que dormir o despertar estando dormido*/
                 else{
                     this.output("Primero debes despertar<img src=https://wallpapercave.com/wp/wp5798556.png alt=Pov del personaje principal class=img-fluid width=700 height=300>");
                 } 
             }
+            /*Comandos de output que saldra si el personajje del jugador esta despierto*/
             else if(!this.sleeping){
+                /*Comandos de output que saldra si el jugador trata de dormir estando despierto*/
                 if (command === "dormir") {
                     this.output("No, Hypnos ha sido informado de tu engaño, nunca dormirás de nuevo, debiste haber aprovechado esos momentos de paz, ahora solo viene el dolor eterno...EL DOLOR DESPERTARSE CON SUEÑO!<img src=https://wallpapercave.com/wp/wp5798556.png alt=Pov del personaje principal class=img-fluid width=700 height=300>");
                 } 
+                /*Comandos de output que saldra si el jugador trata de despertar estando despierto*/
                 else if (command === "despertar") {
                     this.output("Ya estas despierto");
+                    /*el texto de la ubicacin cambiara a forja*/
                     titulo.textContent = "UBICACION: FORJA";
                 }
                 /*Comandos de leer */
@@ -131,9 +159,7 @@
                 }
             
                 else if (command === "leer horno") {
-                   
                         this.output("Un lado dice <H2>NO BEBER EL METAL TE LO DIGO A TI DIONISIO</H2> ....¿que rayos hizo Dionisio?");
-                    
                  }
                 else if (command === "leer llave") {
                     
@@ -157,7 +183,7 @@
                 
                     this.output("Hay un dibujo raspado con un cuchillo en la madera de la mesa, parece un corazon con Afrodita+Hefesto escrito dentro de el");
                 }
-                /*comandos de usar*/
+                /*comandos de usar los objetos*/
                 else if (command === "usar horno") {
                     if(!this.hasMolde){
                         this.output("Mueves el horno para que fluya el metal fundido fuera de su compuerta, el metal se riega en el suelo, el color del metal cuando se enfria es el mismo al de tu piel");}
@@ -176,6 +202,7 @@
                 }
         
                 else if (command === "usar puerta") {
+                    /*revisa si la puerta no esta cerrada y si no lo esta avanza al siguiente nivel*/
                     if(!this.isCerrado){
                         const casaURL = "casa.html";
                         this.output("empujas la puerta, vuelves a mirrar la forja una vez mas pero dicides continuar con tu exploracion, y sales <a href='casa.html'> a la casa</a>");}
@@ -184,20 +211,19 @@
                     }
                 }
                 else if (command === "usar espejo") {
-                    this.output("Limpias la suciedad para alfin averiguar que son esas luces azules que te ven y descubres.....<p>tu reflejo</p><img src=espejo.jpg alt=Pov del personaje principal class=img-fluid width=700 height=300>");
+                    this.output("Limpias la suciedad para alfin averiguar que son esas luces azules que te ven y descubres.....<p>tu reflejo</p><img src=espejo.jpg alt=Pov del pc viendose en el espejo class=img-fluid width=700 height=300 aria-label:'reflejo del pc en el espejo'>");
+                    /*Si cambia la imagen de perfil*/
                     profileImage.src = "https://th.bing.com/th/id/R.6e580526639bbb48488c8a3f815f5928?rik=bJmdNfCr6P2Y1w&riu=http%3a%2f%2f1.bp.blogspot.com%2f_xOJ2co6B4Jw%2fS1PdT9uA4FI%2fAAAAAAAAAQg%2fuQsY2YTUj24%2fw1200-h630-p-k-no-nu%2fWarforged_Portrait.png&ehk=h1OBl1G4Pzqp3ujUGbPHKWtGxtl8TRL3TN5TFKzAf7g%3d&risl=&pid=ImgRaw&r=0";
-                }
-                else if (this.sleeping){
-                    this.output("Primero debes despertar<img src=https://wallpapercave.com/wp/wp5798556.png alt=Pov del personaje principal class=img-fluid width=700 height=300>");
                 }
                 else if (command === "usar pergaminos") {
                     this.output('juegas unos momentos con los pergaminos, tratas de formar una mariposa con ellos, extrañamente en tu memoria tienes las <a href="https://www.instructables.com/How-to-Make-an-Origami-Butterfly-1/">instrucciones</a> para completar esta tarea');
                 }
-                /*comandos de tomar */
+                /*comandos de tomar objetos */
                 else if (command === "tomar horno") {                   
                     this.output("abrazas el horno caliente, tus brazos comienza a tornarse un rojo vivo, pero no sientes dolor. Tratas de levantar el horno pero esta bien puesto");
                 }
                 else if (command === "tomar llave") {
+                    /*revisa si se creo la llave, si no es cierto le pregunta que llave*/
                     if(!this.hasLlave){
                         this.output("Que llave?");}
                     else{
@@ -205,6 +231,7 @@
                     }
                 }
                 else if (command === "tomar molde") {
+                    /*revisa si el personaje no tiene el molde*/
                     if(!this.hasMolde){
                         this.output("tomas el molde de la mesa");
                         this.hasMolde=true;}
@@ -218,6 +245,7 @@
                         this.output("jajajaja.....espera es enserio? no, no puedes tomar la puerta");}
                 
                 else if (command === "tomar pergaminos") {
+                    /*revisa si el personaje no ha tomado ya los pergaminos*/
                     if(!hasReadScrolls){
                         this.output("tomas los pergaminos de la mesa, el papel esta sucio");
                     }
@@ -286,27 +314,25 @@
                 this.output("Comando no reconocido. Error TA705. Prueba otro comando.");
             }
         }
-
+            /*si el comando no esta bien escrito o si el jugador pone algun comando no es valido(los validos es tomar,usar,leer,investgar) sale el siguinete mensjae*/
             else {
                 this.output("Comando no reconocido. Error TA705. Prueba otro comando.");
         }
             
         } 
-        else if (directions.includes(command) && currentRoom.hasOwnProperty(command)) {
-            this.currentRoom = currentRoom[command];
-            this.output(this.rooms[this.currentRoom].description);
-        } else {
-            this.output("Comando no reconocido. Error TA705. Prueba otro comando.");
-        }
         },
+        /*comando para inciar el juego*/
             init() {
                 document.getElementById("input").addEventListener("keyup", this.input.bind(this));
                 this.output(this.start);
             }
         };
+        /*incia el juego*/
 
         game.init();
+    
     </script>
+    <!-- Enlace al archivo JavaScript de Bootstrap, que incluye todas las funcionalidades de Bootstrap (como modales, deslizadores, etc.) -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </body>
 </html>
