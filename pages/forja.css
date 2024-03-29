@@ -19,7 +19,7 @@
     padding: 10px;
     background-color: white;
     border-radius: 5px;
-    color: black;
+    color: white;
 }
 
 /* Estilos para la entrada del juego */
@@ -118,19 +118,12 @@
     border-radius: 5px;
 }
 
-
 .background-image__character-info {
     background-color: white;
 
     padding: 20px;
     border-radius: 5px;
     margin-top: 20px;
-}
-/* Estilos para el nombre del perfil */
-.profile-text__name {
-    /* Estilos para el nombre del perfil aquí */
-    color:white; /* Por ejemplo, cambiar el color del texto a rojo */
-    font-weight: bold; /* Por ejemplo, hacer que el texto sea negrita */
 }
 h1 {
     font-size: 2.5rem; /* Puedes ajustar este tamaño según tus necesidades */
