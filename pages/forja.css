@@ -1,3 +1,4 @@
+/* Estilos para el contenedor del juego */
 .game-container {
     flex: auto;
     padding: 20px;
@@ -15,11 +16,13 @@
 
 /* Estilos para la salida del juego */
 .game-container__output {
+    font-family: 'Times New Roman', Times, serif;
+    font-size: large;
     margin-bottom: 10px;
     padding: 10px;
-    background-color: white;
+    background-color: lightgray;
     border-radius: 5px;
-    color: white;
+    color: black ;
 }
 
 /* Estilos para la entrada del juego */
@@ -29,17 +32,25 @@
     border-radius: 5px;
     border: 1px solid white;
     font-size: 16px;
-    color: black; /* Color de texto personalizado */
+    color: black; 
 }
-/* Bloques */
+.game-container__inputlabel{
+    
+    font-weight: bold;
+    font-size: large;
+    color: white;
+    margin-bottom: 5px;
+}
+
+/* Estilos para el contenedor de la imagen de fondo */
 .background-image {
-    background-image: url("https://discoelysium.com/_next/image?url=https:%2F%2Fres.cloudinary.com%2Fdisco-elysium%2Fimages%2Ff_auto%2Cq_auto%2Fv1607523468%2FMedia-Page%2FMedia-Page.png&w=640&q=100");
+    background-image: url("https://discoelysium.com/_next/image?url=https:%2F%2Fres.cloudinary.com%2Fdisco-elysium%2Fimages%2Ff_auto%2Cq_auto%2Fv1607523468%2FMedia-Page%2FMedia-Page.png&w=640&q=100");/**fuente de la imagen que s eusa para el background*/
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center center;
     min-height: 100vh;
 }
-
+/* Estilos para el contenedor principal */
 .container-fluid {
     width: 100%;
     padding-right: 15px;
@@ -48,39 +59,39 @@
     margin-left: 0;
 
 }
-
+/* Estilos para las filas */
 .row {
     display: flex;
     flex-wrap: wrap;
     margin-right: -15px;
     margin-left: -15px;
 }
-
+/* Estilos para las columnas */
 .col {
     flex-basis: 0;
     flex-grow: 1;
     max-width: 100%;
 }
-
+/* Estilos para el texto centrado */
 .text-center {
     text-align: center;
 }
 
-/* Elementos */
+/* Estilos para elementos de la imagen de fondo */
 .background-image__container {
     padding: 20px;
     background-color: black;
     border-radius: 5px;
     box-shadow: 0 0 10px rgba(19, 14, 14, 0.1);
 }
-
+/*Este estilo se aplica a un elemento de salida dentro del contexto de una imagen de fondo.*/
 .background-image__output {
     margin-bottom: 10px;
     padding: 10px;
     background-color: gray;
     border-radius: 5px;
 }
-
+/*Este estilo se aplica a un elemento con aspecto de pergamino dentro del contexto de una imagen de fondo.*/
 .background-image__pergamino {
     background-color: palegoldenrod;
     padding: 20px;
@@ -89,7 +100,7 @@
     font-style: italic;
     color: black;
 }
-
+/*Este estilo se aplica al seudoelemento ::before de un elemento con aspecto de pergamino dentro del contexto de una imagen de fondo.*/
 .background-image__pergamino:before {
     content: '';
     position: absolute;
@@ -103,7 +114,7 @@
     border-bottom: 10px solid #f5e6cc;
 }
 
-/* Modificadores */
+/*  Este estilo se aplica a un elemento de entrada en el contexto de una imagen de fondo. */
 .background-image__input {
     width: calc(100% - 10px);
     padding: 10px;
@@ -111,52 +122,57 @@
     border: 1px solid white;
     font-size: 16px;
 }
-
+/*Este estilo se aplica a una sección del perfil dentro del contexto de una imagen de fondo.*/
 .background-image__profile-section {
-    background-color: #0a3d39;
+    background-color: #0a233d;
     padding: 20px;
     border-radius: 5px;
 }
-
+/**Este estilo se aplica a la información del personaje dentro del contexto de una imagen de fondo.*/
 .background-image__character-info {
-    background-color: white;
-
+    background-color: #f8f9fa;
     padding: 20px;
     border-radius: 5px;
     margin-top: 20px;
 }
+
+/* Estilos de los títulos */
 h1 {
-    font-size: 2.5rem; /* Puedes ajustar este tamaño según tus necesidades */
-    font-weight: bold; /* Opcional: para negrita */
-    margin-top: 20px; /* Opcional: ajusta el margen superior según necesites */
-    margin-bottom: 20px; /* Opcional: ajusta el margen inferior según necesites */
-    color: crimson; /* Cambia el color del texto */
-    background-color: darkgoldenrod; 
-    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-size: 2.5rem; /* Tamaño de la fuente */
+    font-weight: bold; /* para la negrita del texto */
+    margin-top: 20px; /*ajuste del margen superior según necesites */
+    margin-bottom: 20px; /*ajuste del margen inferior según necesites */
+    color: crimson; /* color del texto */
+    background-color: darkgoldenrod; /* color del background del texto */
+    font-family: Georgia, 'Times New Roman', Times, serif; /**fuente del texto*/
 }
 
 h1.text-yellow {
-    color: yellow; /* Cambia el color del texto a amarillo */
+    color: yellow; /* color del text */
 }
 h2 {
-    font-size: 2.5rem; /* Puedes ajustar este tamaño según tus necesidades */
+    font-size: 2.5rem; /* tamaño de la fuente */
     font-weight: bold; /* Opcional: para negrita */
-    margin-top: 20px; /* Opcional: ajusta el margen superior según necesites */
-    margin-bottom: 20px; /* Opcional: ajusta el margen inferior según necesites */
+    margin-top: 20px;
+    margin-bottom: 20px;
     color: crimson; /* Cambia el color del texto */
+  
     font-family: Georgia, 'Times New Roman', Times, serif;
 }
+/* Estilos para enlaces */
 a {
-    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif; /* Cambia "Tu Fuente Aquí" por el nombre de la fuente que desees */
-    font-weight: normal; /* Puedes ajustar el peso de la fuente según tus preferencias */
-    color: white; /* Cambia el color del texto del enlace según tus preferencias */
-    text-decoration: none; /* Elimina el subrayado predeterminado de los enlaces, si lo deseas */
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif; /**fuente para el texto del enlace*/
+    font-weight: normal; /* el peso de la fuente  */
+    color: #007bff; /* Cambia el color del texto del enlace  */
 }
-
+/* Estilos para el enlace una vez que se mueva el mouse por encima */
 a:hover {
     text-decoration: underline; /* Agrega subrayado cuando el enlace está en estado de hover */
 }
+
+
+/* Estilos para el cuerpo */
 body {
-    font-family: Arial, sans-serif;
-    background-color: #9b2323;
+    font-family: Arial, sans-serif;/**fuente general para el texto del cuerpo*/
+    background-color: #9b2323;/**el color del background del cuerpo*/
 }
