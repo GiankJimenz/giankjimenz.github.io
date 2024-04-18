@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Reviews</title>
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+
+<div class="container">
+  <h1 class="mt-5">Deja tu Review</h1>
+  <form id="reviewForm">
+    <div class="form-group">
+      <label for="nombre">Nombre:</label>
+      <input type="text" class="form-control" id="nombre" placeholder="Ingresa tu nombre">
+    </div>
+    <div class="form-group">
+      <label for="comentario">Comentario:</label>
+      <textarea class="form-control" id="comentario" rows="3" placeholder="Ingresa tu comentario"></textarea>
+    </div>
+    <div class="form-group">
+      <label for="puntuacion">Puntuación:</label>
+      <select class="form-control" id="puntuacion">
+        <option value="1">1 Estrella</option>
+        <option value="2">2 Estrellas</option>
+        <option value="3">3 Estrellas</option>
+        <option value="4">4 Estrellas</option>
+        <option value="5">5 Estrellas</option>
+      </select>
+    </div>
+    <button type="submit" class="btn btn-primary">Enviar Review</button>
+  </form>
+
+  <hr>
+
+  <h2>Reviews Recientes</h2>
+  <div id="reviews"></div>
+</div>
+
+<!-- Bootstrap JS and dependencies -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+<script>
+  // Función para mostrar los reviews almacenados en localStorage
+  function mostrarReviews() {
+    var reviews = JSON.parse(localStorage.getItem('reviews')) || [];
+    var reviewsHTML = '';
+
+    reviews.forEach(function(review) {
+      reviewsHTML += `
+        <div class="card mt-3">
+          <div class="card-body">
+            <h5 class="card-title">${review.nombre}</h5>
+            <h6 class="card-subtitle mb-2 text-muted">${review.puntuacion} Estrellas</h6>
+            <p class="card-text">${review.comentario}</p>
+          </div>
+        </div>
+      `;
+    });
+
+    document.getElementById('reviews').innerHTML = reviewsHTML;
+  }
+
+  // Función para manejar el envío del formulario
+  document.getElementById('reviewForm').addEventListener('submit', function(event) {
+    event.preventDefault();
+
+    var nombre = document.getElementById('nombre').value;
+    var comentario = document.getElementById('comentario').value;
+    var puntuacion = document.getElementById('puntuacion').value;
+
+    var review = {
+      nombre: nombre,
+      comentario: comentario,
+      puntuacion: puntuacion
+    };
+
+    var reviews = JSON.parse(localStorage.getItem('reviews')) || [];
+    reviews.push(review);
+    localStorage.setItem('reviews', JSON.stringify(reviews));
+
+    mostrarReviews();
+
+    // Limpiar el formulario después de enviar
+    document.getElementById('nombre').value = '';
+    document.getElementById('comentario').value = '';
+    document.getElementById('puntuacion').value = '1';
+  });
+
+  // Mostrar los reviews al cargar la página
+  mostrarReviews();
+</script>
+</body>
+</html>
