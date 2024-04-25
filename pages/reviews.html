@@ -12,6 +12,24 @@
 <div class="container">
   <h1 class="mt-5">Deja tu Review</h1>
   <form id="reviewForm">
+     <!-- Nuevo dropdown para seleccionar el producto -->
+     <div class="form-group">
+      <label for="producto">Producto:</label>
+      <select class="form-control" id="producto">
+        <option value="BANDAI ONE Piece Card Game Extra Booster Memorial Collection EB-01 (Box) Pack of 24">BANDAI ONE Piece Card Game Extra Booster Memorial Collection EB-01 (Box) Pack of 24</option>
+        <option value="Yu-Gi-Oh! TCG - Mazo de inicio Estructuras de Sincronía">Yu-Gi-Oh! TCG - Mazo de inicio "Estructuras de Sincronía"</option>
+        <option value="Pokémon TCG - Mazo de inicio Vuelo Dragón">Pokémon TCG - Mazo de inicio "Vuelo Dragón"</option>
+        <option value="Dados poliédricos Mundos de Fantasía">Dados poliédricos "Mundos de Fantasía"</option>
+        <option value="Piedra Lunar de Labradorita Hombre Lobo"> "Piedra Lunar" de Labradorita Hombre Lobo</option>
+        <option value="Dado MTG: Loto Negro">Dado MTG: Loto Negro</option>
+        <option value="Scrabble: Edición Español">Scrabble: Edición Español</option>
+        <option value="Risk: Dominación Mundial">Risk: Dominación Mundial</option>
+        <option value="Wingspan">Wingspan</option>
+        <option value="COUP">COUP</option>
+        <option value="Monopoly: Edición Clásica">Monopoly: Edición Clásica</option>
+        <!-- Agrega más opciones según tus productos -->
+      </select>
+    </div>
     <div class="form-group">
       <label for="nombre">Nombre:</label>
       <input type="text" class="form-control" id="nombre" placeholder="Ingresa tu nombre">
@@ -30,12 +48,32 @@
         <option value="5">5 Estrellas</option>
       </select>
     </div>
+    
     <button type="submit" class="btn btn-primary">Enviar Review</button>
   </form>
 
   <hr>
 
   <h2>Reviews Recientes</h2>
+  <!-- Nuevo campo de búsqueda por producto -->
+  <div class="form-group">
+    <label for="buscarProducto">Buscar Reviews por Producto:</label>
+    <select class="form-control" id="buscarProducto" onchange="buscarReviews()">
+      <option value="">Todos los Productos</option>
+      <option value="BANDAI ONE Piece Card Game Extra Booster Memorial Collection EB-01 (Box) Pack of 24">BANDAI ONE Piece Card Game Extra Booster Memorial Collection EB-01 (Box) Pack of 24</option>
+        <option value="Yu-Gi-Oh! TCG - Mazo de inicio Estructuras de Sincronía">Yu-Gi-Oh! TCG - Mazo de inicio "Estructuras de Sincronía"</option>
+        <option value="Pokémon TCG - Mazo de inicio Vuelo Dragón">Pokémon TCG - Mazo de inicio "Vuelo Dragón"</option>
+        <option value="Dados poliédricos Mundos de Fantasía">Dados poliédricos "Mundos de Fantasía"</option>
+        <option value="Piedra Lunar de Labradorita Hombre Lobo"> "Piedra Lunar" de Labradorita Hombre Lobo</option>
+        <option value="Dado MTG: Loto Negro">Dado MTG: Loto Negro</option>
+        <option value="Scrabble: Edición Español">Scrabble: Edición Español</option>
+        <option value="Risk: Dominación Mundial">Risk: Dominación Mundial</option>
+        <option value="Wingspan">Wingspan</option>
+        <option value="COUP">COUP</option>
+        <option value="Monopoly: Edición Clásica">Monopoly: Edición Clásica</option>
+      <!-- Agrega más opciones según tus productos -->
+    </select>
+  </div>
   <div id="reviews"></div>
 </div>
 
@@ -45,21 +83,25 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
 <script>
-  // Función para mostrar los reviews almacenados en localStorage
-  function mostrarReviews() {
+  // Función para mostrar los reviews almacenados en localStorage filtrados por producto
+  function mostrarReviews(productoSeleccionado = '') {
     var reviews = JSON.parse(localStorage.getItem('reviews')) || [];
     var reviewsHTML = '';
 
     reviews.forEach(function(review) {
-      reviewsHTML += `
-        <div class="card mt-3">
-          <div class="card-body">
-            <h5 class="card-title">${review.nombre}</h5>
-            <h6 class="card-subtitle mb-2 text-muted">${review.puntuacion} Estrellas</h6>
-            <p class="card-text">${review.comentario}</p>
+      // Si no se ha seleccionado un producto o el review pertenece al producto seleccionado, mostrarlo
+      if (productoSeleccionado === '' || review.producto === productoSeleccionado) {
+        reviewsHTML += `
+          <div class="card mt-3">
+            <div class="card-body">
+              <h5 class="card-title">${review.nombre}</h5>
+              <h6 class="card-subtitle mb-2 text-muted">${review.puntuacion} Estrellas</h6>
+              <p class="card-text">${review.comentario}</p>
+              <p class="card-text">Producto: ${review.producto}</p>
+            </div>
           </div>
-        </div>
-      `;
+        `;
+      }
     });
 
     document.getElementById('reviews').innerHTML = reviewsHTML;
@@ -72,11 +114,13 @@
     var nombre = document.getElementById('nombre').value;
     var comentario = document.getElementById('comentario').value;
     var puntuacion = document.getElementById('puntuacion').value;
+    var producto = document.getElementById('producto').value;
 
     var review = {
       nombre: nombre,
       comentario: comentario,
-      puntuacion: puntuacion
+      puntuacion: puntuacion,
+      producto: producto // Añadir el producto al review
     };
 
     var reviews = JSON.parse(localStorage.getItem('reviews')) || [];
@@ -90,6 +134,12 @@
     document.getElementById('comentario').value = '';
     document.getElementById('puntuacion').value = '1';
   });
+
+  // Función para buscar reviews por producto
+  function buscarReviews() {
+    var productoSeleccionado = document.getElementById('buscarProducto').value;
+    mostrarReviews(productoSeleccionado);
+  }
 
   // Mostrar los reviews al cargar la página
   mostrarReviews();
